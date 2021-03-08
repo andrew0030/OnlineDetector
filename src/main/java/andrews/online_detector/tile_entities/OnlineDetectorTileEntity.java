@@ -15,18 +15,25 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.util.Constants.NBT;
 
 public class OnlineDetectorTileEntity extends TileEntity implements ITickableTileEntity
 {
-	private UUID ownerID;
-	private String ownerName;
-	private int updateFrequency;
-	private ItemStack ownerHead;
+	protected UUID ownerID;
+	protected String ownerName;
+	protected int updateFrequency;
+	protected ItemStack ownerHead;
 	
 	public OnlineDetectorTileEntity()
 	{
 		super(ODTileEntities.ONLINE_DETECTOR.get());
+		this.updateFrequency = ODConfigs.ODCommonConfig.onlineCheckFrequency.get();
+	}
+	
+	public OnlineDetectorTileEntity(TileEntityType<?> tileEntityTypeIn)
+	{
+		super(tileEntityTypeIn);
 		this.updateFrequency = ODConfigs.ODCommonConfig.onlineCheckFrequency.get();
 	}
 

@@ -1,6 +1,7 @@
 package andrews.online_detector;
 
 import andrews.online_detector.config.ODConfigs;
+import andrews.online_detector.network.ODNetwork;
 import andrews.online_detector.registry.ODBlocks;
 import andrews.online_detector.registry.ODItems;
 import andrews.online_detector.registry.ODTileEntities;
@@ -47,6 +48,7 @@ public class OnlineDetector
 			
 		});
 		//Thread Safe Stuff
+		ODNetwork.setupMessages();
 		
 	}
 	

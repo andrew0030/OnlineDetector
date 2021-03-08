@@ -1,0 +1,12 @@
+{
+  "parent": "online_detector:block/online_detector",
+  "textures": {
+		"0": "online_detector:block/advanced_online_detector_front_on",
+		"1": "online_detector:block/advanced_online_detector_side_on",
+		"2": "online_detector:block/advanced_online_detector_bottom_on",
+		"3": "online_detector:block/advanced_online_detector_top",
+		"4": "online_detector:block/block_detector_head_holder",
+		"5": "online_detector:block/block_detector_eye_holder",
+		"particle": "online_detector:block/advanced_online_detector_top"
+	}
+}
