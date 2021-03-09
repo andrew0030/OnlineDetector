@@ -1,34 +1,64 @@
 {
   "variants": {
-    "facing=east,is_active=false": {
+    "facing=east,is_active=false,is_inverted=false": {
       "model": "online_detector:block/advanced_online_detector",
       "y": 180
     },
-    "facing=east,is_active=true": {
+    "facing=east,is_active=false,is_inverted=true": {
       "model": "online_detector:block/advanced_online_detector_on",
       "y": 180
     },
-    "facing=north,is_active=false": {
+    "facing=east,is_active=true,is_inverted=false": {
+      "model": "online_detector:block/advanced_online_detector_on",
+      "y": 180
+    },
+    "facing=east,is_active=true,is_inverted=true": {
+      "model": "online_detector:block/advanced_online_detector",
+      "y": 180
+    },
+    "facing=north,is_active=false,is_inverted=false": {
       "model": "online_detector:block/advanced_online_detector",
       "y": 90
     },
-    "facing=north,is_active=true": {
+    "facing=north,is_active=false,is_inverted=true": {
       "model": "online_detector:block/advanced_online_detector_on",
       "y": 90
     },
-    "facing=south,is_active=false": {
+    "facing=north,is_active=true,is_inverted=false": {
+      "model": "online_detector:block/advanced_online_detector_on",
+      "y": 90
+    },
+    "facing=north,is_active=true,is_inverted=true": {
+      "model": "online_detector:block/advanced_online_detector",
+      "y": 90
+    },
+    "facing=south,is_active=false,is_inverted=false": {
       "model": "online_detector:block/advanced_online_detector",
       "y": 270
     },
-    "facing=south,is_active=true": {
+    "facing=south,is_active=false,is_inverted=true": {
       "model": "online_detector:block/advanced_online_detector_on",
       "y": 270
     },
-    "facing=west,is_active=false": {
+    "facing=south,is_active=true,is_inverted=false": {
+      "model": "online_detector:block/advanced_online_detector_on",
+      "y": 270
+    },
+    "facing=south,is_active=true,is_inverted=true": {
+      "model": "online_detector:block/advanced_online_detector",
+      "y": 270
+    },
+    "facing=west,is_active=false,is_inverted=false": {
       "model": "online_detector:block/advanced_online_detector"
     },
-    "facing=west,is_active=true": {
+    "facing=west,is_active=false,is_inverted=true": {
       "model": "online_detector:block/advanced_online_detector_on"
+    },
+    "facing=west,is_active=true,is_inverted=false": {
+      "model": "online_detector:block/advanced_online_detector_on"
+    },
+    "facing=west,is_active=true,is_inverted=true": {
+      "model": "online_detector:block/advanced_online_detector"
     }
   }
 }

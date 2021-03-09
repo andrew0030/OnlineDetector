@@ -1,0 +1,10 @@
+{	
+"_comment": "Blocks",
+	"block.online_detector.online_detector": "Detector Online",
+	"block.online_detector.advanced_online_detector": "Detector Online Avanzado",
+	
+"_comment1": "GUI",
+	"gui.online_detector.advanced_online_detector": "Detector Online Avanzado",
+	"gui.online_detector.tracking": "Siguiendo a:",
+	"gui.online_detector.available": "Jugadores Disponibles:"
+}

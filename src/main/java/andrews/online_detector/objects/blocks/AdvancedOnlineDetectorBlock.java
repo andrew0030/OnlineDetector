@@ -34,7 +34,8 @@ public class AdvancedOnlineDetectorBlock extends OnlineDetectorBlock
 	@Override
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
 	{
-		if(worldIn.getTileEntity(pos) instanceof AdvancedOnlineDetectorTileEntity)
+		super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+		if(!player.isSneaking() && worldIn.getTileEntity(pos) instanceof AdvancedOnlineDetectorTileEntity)
 		{
 			AdvancedOnlineDetectorTileEntity advancedOnlineDetectorTileEntity = (AdvancedOnlineDetectorTileEntity) worldIn.getTileEntity(pos);
 			if(worldIn.isRemote)

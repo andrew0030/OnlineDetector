@@ -20,8 +20,11 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -32,6 +35,7 @@ public class OnlineDetectorBlock extends Block
 {
 	public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final BooleanProperty IS_ACTIVE = BooleanProperty.create("is_active");
+	public static final BooleanProperty IS_INVERTED = BooleanProperty.create("is_inverted");
 	protected static final VoxelShape BOTTOM_PART = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 13.0D, 16.0D);
 	protected static final VoxelShape TOP_PART = Block.makeCuboidShape(3.0D, 13.0D, 3.0D, 13.0D, 14.0D, 13.0D);
 	protected static final VoxelShape AABB = VoxelShapes.or(BOTTOM_PART, TOP_PART);
@@ -40,7 +44,7 @@ public class OnlineDetectorBlock extends Block
 	public OnlineDetectorBlock()
 	{
 		super(getProperties());
-		this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(IS_ACTIVE, false));
+		this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(IS_ACTIVE, false).with(IS_INVERTED, false));
 	}
 	
 	/**
@@ -64,18 +68,14 @@ public class OnlineDetectorBlock extends Block
 	{
 		return (state) ->
 		{
-			return state.get(IS_ACTIVE) ? lightValue : 0;
+			return (state.get(IS_ACTIVE) && !state.get(IS_INVERTED)) || (!state.get(IS_ACTIVE) && state.get(IS_INVERTED)) ? lightValue : 0;
 		};
 	}
 	
 	@Override
-	public int getWeakPower(BlockState blockState, IBlockReader blockAccess, BlockPos pos, Direction side)
+	public int getWeakPower(BlockState stateIn, IBlockReader blockAccess, BlockPos pos, Direction side)
 	{
-		if(!blockState.get(IS_ACTIVE))
-		{
-			return 0;
-		}
-		else
+		if((stateIn.get(IS_ACTIVE) && !stateIn.get(IS_INVERTED)) || (!stateIn.get(IS_ACTIVE) && stateIn.get(IS_INVERTED)))
 		{
 			switch(side)
 			{
@@ -88,9 +88,23 @@ public class OnlineDetectorBlock extends Block
 			case EAST:
 			case WEST:
 				return 15;
-				
 			}
 		}
+		else
+		{
+			return 0;
+		}
+	}
+	
+	@Override
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+	{
+		if(player.isSneaking())
+		{
+			worldIn.setBlockState(pos, state.with(OnlineDetectorBlock.IS_INVERTED, !state.get(OnlineDetectorBlock.IS_INVERTED)));
+			return ActionResultType.SUCCESS;
+		}
+		return ActionResultType.PASS;
 	}
 	
 	@Override
@@ -133,19 +147,19 @@ public class OnlineDetectorBlock extends Block
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context)
 	{
-		return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().rotateY()).with(IS_ACTIVE, false);
+		return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().rotateY()).with(IS_ACTIVE, false).with(IS_INVERTED, false);
 	}
 	
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
 	{
-		builder.add(HORIZONTAL_FACING, IS_ACTIVE);
+		builder.add(HORIZONTAL_FACING, IS_ACTIVE, IS_INVERTED);
 	}
 	
 	@Override
 	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
-		if(stateIn.get(IS_ACTIVE))
+		if((stateIn.get(IS_ACTIVE) && !stateIn.get(IS_INVERTED)) || (!stateIn.get(IS_ACTIVE) && stateIn.get(IS_INVERTED)))
 		{
 			if(ODConfigs.ODClientConfig.shouldShowRedstoneParticles.get())
 			{
@@ -158,7 +172,10 @@ public class OnlineDetectorBlock extends Block
 					worldIn.addParticle(RedstoneParticleData.REDSTONE_DUST, pos.getX() + PIXEL_SIZE * 8, pos.getY() - PIXEL_SIZE, pos.getZ() + PIXEL_SIZE * 8, 0.0D, 0.0D, 0.0D);
 				}
 			}
-			
+		}
+		
+		if(stateIn.get(IS_ACTIVE))
+		{
 			if(ODConfigs.ODClientConfig.shouldShowPortalParticles.get())
 			{
 				for(int i = 0; i < 3; ++i)

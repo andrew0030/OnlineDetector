@@ -1,0 +1,10 @@
+{
+"_comment": "Blocks",
+	"block.online_detector.online_detector": "在线检测器",
+	"block.online_detector.advanced_online_detector": "高级在线检测器",
+	
+"_comment1": "GUI",
+	"gui.online_detector.advanced_online_detector": "高级在线检测器",
+	"gui.online_detector.tracking": "正在追踪：",
+	"gui.online_detector.available": "可追踪玩家："
+}

@@ -1,0 +1,10 @@
+{	
+"_comment": "Blocks",
+    "block.online_detector.online_detector": "Tracciatore di player",
+    "block.online_detector.advanced_online_detector": "Tracciatore di player avanzato",
+    
+"_comment1": "GUI",
+    "gui.online_detector.advanced_online_detector": "Tracciatore di player avanzato",
+    "gui.online_detector.tracking": "Attualmente tracciando:",
+    "gui.online_detector.available": "Player tracciabili:"
+}

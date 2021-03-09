@@ -1,0 +1,10 @@
+{
+"_comment": "Blocks",
+	"block.online_detector.online_detector": "Ανιχνευτής Παικτών",
+	"block.online_detector.advanced_online_detector": "Ανώτερος Ανιχνευτής Παικτών",
+	
+"_comment1": "GUI",
+	"gui.online_detector.advanced_online_detector": "Ανώτερος Ανιχνευτής Παικτών",
+	"gui.online_detector.tracking": "Τρέχουσα Παρακολούθηση:",
+	"gui.online_detector.available": "Διαθέσιμοι για Παρακολούθηση:"
+}
