@@ -1,6 +1,7 @@
 package andrews.online_detector.network;
 
 import andrews.online_detector.network.server.MessageServerSelectPlayer;
+import andrews.online_detector.network.server.MessageServerSetPlayerHead;
 import andrews.online_detector.util.Reference;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkRegistry;
@@ -29,6 +30,12 @@ public static final String NETWORK_PROTOCOL = "1";
 		.encoder(MessageServerSelectPlayer::serialize)
 		.decoder(MessageServerSelectPlayer::deserialize)
 		.consumer(MessageServerSelectPlayer::handle)
+		.add();
+		
+		CHANNEL.messageBuilder(MessageServerSetPlayerHead.class, id++)
+		.encoder(MessageServerSetPlayerHead::serialize)
+		.decoder(MessageServerSetPlayerHead::deserialize)
+		.consumer(MessageServerSetPlayerHead::handle)
 		.add();
 	}
 }

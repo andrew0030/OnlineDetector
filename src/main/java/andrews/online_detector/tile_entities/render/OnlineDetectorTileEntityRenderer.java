@@ -125,11 +125,13 @@ public class OnlineDetectorTileEntityRenderer extends TileEntityRenderer<OnlineD
 	{
 		if(tileEntityIn.getOwnerUUID() != null && tileEntityIn.getOwnerName() != null)
 		{
-			if(tileEntityIn.getOwnerHead() == null)
+			if(tileEntityIn.getOwnerHead().getItem() == Items.AIR)
+				// THis was replaced with a simplified version of the code because the normal Online Detector never changes the player head unless replaced
+//				NetworkUtil.setPlayerHeadMessage(tileEntityIn.getPos(), getCustomHead(tileEntityIn.getOwnerName()));
 				tileEntityIn.setOwnerHead(getCustomHead(tileEntityIn.getOwnerName()));
 		}
 		// We make sure the stack has been initialized before attempting to render it
-		if(tileEntityIn.getOwnerHead() != null)
+		if(tileEntityIn.getOwnerHead().getItem() != Items.AIR)
 			Minecraft.getInstance().getItemRenderer().renderItem(tileEntityIn.getOwnerHead(), TransformType.FIXED, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn);
 	}
 	

@@ -56,7 +56,7 @@ public class AdvancedOnlineDetectorScreen extends Screen
 		totalPages = (int) Math.ceil(playerList.size() / 5.0D);
 		int buttonIndex = 0;
 		for(int j = 0; j < playerList.size(); j++)
-		{
+		{	
 			NetworkPlayerInfo playerInfo = playerList.get(buttonIndex);
 			this.addButton(new AvailablePlayerButton(advancedOnlineDetectorTileEntity, playerInfo, x + 6, y + 51 + (j * 12) - ((int)Math.floor(j / 5) * 60), this, buttonIndex));
 			buttonIndex++;

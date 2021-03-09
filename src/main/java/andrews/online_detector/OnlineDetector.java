@@ -30,7 +30,6 @@ public class OnlineDetector
 		ODItems.ITEMS.register(modEventBus);
 		ODBlocks.BLOCKS.register(modEventBus);
 		ODTileEntities.TILE_ENTITY_TYPES.register(modEventBus);
-//		ODCrafting.RECIPES.register(modEventBus);
 		
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () ->
 		{
@@ -57,7 +56,6 @@ public class OnlineDetector
 	{
 		event.enqueueWork(() -> 
 		{
-//			ODRenderLayers.setBlockRenderLayers();
 			ODTileEntities.registerTileRenders();
 		});
 		//Thread Safe Stuff

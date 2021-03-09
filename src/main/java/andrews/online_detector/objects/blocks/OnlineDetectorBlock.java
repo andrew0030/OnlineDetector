@@ -12,6 +12,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.particles.RedstoneParticleData;
 import net.minecraft.state.BooleanProperty;
@@ -106,6 +107,7 @@ public class OnlineDetectorBlock extends Block
 				
 				onlineDetectorTileEntity.setOwnerUUID(player.getUniqueID());
 				onlineDetectorTileEntity.setOwnerName(player.getName().getString());
+				onlineDetectorTileEntity.setOwnerHead(new ItemStack(Items.AIR));
 	        }
 		}
 	}

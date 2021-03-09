@@ -14,6 +14,8 @@ import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.network.play.NetworkPlayerInfo;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.fml.client.gui.GuiUtils;
@@ -26,24 +28,37 @@ public class AvailablePlayerButton extends Button
 	private final FontRenderer fontRenderer;
 	private int u = 0;
 	private int v = 131;
-	private static NetworkPlayerInfo playerInfo;
-	private static AdvancedOnlineDetectorTileEntity advancedOnlineDetectorTileEntity;
+	private NetworkPlayerInfo playerInfo;
+	private AdvancedOnlineDetectorTileEntity advancedOnlineDetectorTileEntity;
 	private AdvancedOnlineDetectorScreen screen;
 	private int buttonIndex;
 	
-	public AvailablePlayerButton(AdvancedOnlineDetectorTileEntity advancedOnlineDetectorTileEntity1, NetworkPlayerInfo playerInformation, int xPos, int yPos, AdvancedOnlineDetectorScreen screen, int buttonIndex) 
+	public AvailablePlayerButton(AdvancedOnlineDetectorTileEntity advancedOnlineDetectorTileEntity, NetworkPlayerInfo playerInfo, int xPos, int yPos, AdvancedOnlineDetectorScreen screen, int buttonIndex) 
 	{
-		super(xPos, yPos, buttonWidth, buttonHeight, new StringTextComponent(""), (button) -> { handleButtonPress(); });
+		super(xPos, yPos, buttonWidth, buttonHeight, new StringTextComponent(""), null);
 		this.fontRenderer = Minecraft.getInstance().fontRenderer;
-		advancedOnlineDetectorTileEntity = advancedOnlineDetectorTileEntity1;
-		playerInfo = playerInformation;
+		this.advancedOnlineDetectorTileEntity = advancedOnlineDetectorTileEntity;
+		this.playerInfo = playerInfo;
 		this.screen = screen;
 		this.buttonIndex = buttonIndex;
 	}
 	
 	@Override
+	public void onPress()
+	{
+		if(Minecraft.getInstance().world.getPlayerByUuid(playerInfo.getGameProfile().getId()) != null)
+		{
+			UUID uuid = playerInfo.getGameProfile().getId();
+			String name = Minecraft.getInstance().world.getPlayerByUuid(playerInfo.getGameProfile().getId()).getName().getString();
+			NetworkUtil.newSelectPlayerMessage(advancedOnlineDetectorTileEntity.getPos(), uuid, name);
+			NetworkUtil.setPlayerHeadMessage(advancedOnlineDetectorTileEntity.getPos(), new ItemStack(Items.AIR));
+		}
+		Minecraft.getInstance().player.closeScreen();
+	}
+	
+	@Override
 	public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
-	{	
+	{
 		this.isHovered = false;
 		if(mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height || this.isFocused())
 			this.isHovered = true;
@@ -68,23 +83,9 @@ public class AvailablePlayerButton extends Button
 		matrixStack.pop();
 		if(!(buttonIndex < (screen.getCurrentPage() * 5) - 5 || buttonIndex >= screen.getCurrentPage() * 5))
 		{
-			this.fontRenderer.drawString(matrixStack, Minecraft.getInstance().world.getPlayerByUuid(playerInfo.getGameProfile().getId()).getName().getString() + " " + buttonIndex, x + 12, y + 2, 0x000000);
+			this.fontRenderer.drawString(matrixStack, Minecraft.getInstance().world.getPlayerByUuid(playerInfo.getGameProfile().getId()).getName().getString(), x + 12, y + 2, 0x000000);
 			Minecraft.getInstance().getTextureManager().bindTexture(playerInfo.getLocationSkin());
 			AbstractGui.blit(matrixStack, x + 2, y + 2, 8, 8, 8.0F, 8, 8, 8, 64, 64);
 		}
-	}
-	
-	/**
-	 * Gets called when the Button gets pressed
-	 */
-	private static void handleButtonPress()
-	{
-		if(Minecraft.getInstance().world.getPlayerByUuid(playerInfo.getGameProfile().getId()) != null)
-		{
-			UUID uuid = playerInfo.getGameProfile().getId();
-			String name = Minecraft.getInstance().world.getPlayerByUuid(playerInfo.getGameProfile().getId()).getName().getString();
-			NetworkUtil.newSelectPlayerMessage(advancedOnlineDetectorTileEntity.getPos(), uuid, name);
-		}
-		Minecraft.getInstance().player.closeScreen();
 	}
 }

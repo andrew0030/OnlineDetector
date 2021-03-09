@@ -1,28 +1,26 @@
 modLoader="javafml"
 loaderVersion="[34,)"
-issueTrackerURL="https://www.curseforge.com/minecraft/mc-mods/pandoras-creatures/issues"
+issueTrackerURL="https://github.com/andrew0030/OnlineDetector/issues"
 logoFile="logo.png"
-license="MIT"
+license="GNU Lesser General Public License v3.0"
 
 [[mods]]
     modId="online_detector"
 	version="1.16-1.0.0"
 	displayName="Online Detector"
-	displayURL="https://www.curseforge.com/minecraft/mc-mods/pandoras-creatures"
-	credits="\nIgrek, for his amazing textures.\nFlummie2000 for translating and textures.\nGdG_Metiu19 for translating.\nqsefthuopq for translating.\nGhanou Craft for translating.\nEl Limbo for translating.\nGun_Man1 for translating.\nWanadi for translating.\nMinzhire for translating.\n"
-	authors="andrew0030\n"
-	description='''
-Pandoras Creatures is a Mod that aims to make your game experience harder. If you got bored of the normal mobs or just want to walk around and enjoy exploring the new creatures and how they affect the world, then this Mod is exactly what you need.
-	'''
+	displayURL="https://www.curseforge.com/minecraft/mc-mods/online-detector"
+	credits=""
+	authors="andrew0030"
+	description='''Online Detector is a Mod that adds Blocks, that allow you to detect if a Player is online.'''
 
-[[dependencies.pandoras_creatures]] #optional
+[[dependencies.online_detector]]
     modId="forge"
     mandatory=true
     versionRange="[34.1.21,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.pandoras_creatures]]
+[[dependencies.online_detector]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.16.3, 1.17.0)"

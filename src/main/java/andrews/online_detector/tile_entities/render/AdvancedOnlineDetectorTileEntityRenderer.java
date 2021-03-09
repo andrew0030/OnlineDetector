@@ -6,6 +6,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import andrews.online_detector.objects.blocks.AdvancedOnlineDetectorBlock;
 import andrews.online_detector.tile_entities.AdvancedOnlineDetectorTileEntity;
 import andrews.online_detector.tile_entities.model.EyeModel;
+import andrews.online_detector.util.NetworkUtil;
 import andrews.online_detector.util.Reference;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -125,11 +126,11 @@ public class AdvancedOnlineDetectorTileEntityRenderer extends TileEntityRenderer
 	{
 		if(tileEntityIn.getOwnerUUID() != null && tileEntityIn.getOwnerName() != null)
 		{
-			if(tileEntityIn.getOwnerHead() == null)
-				tileEntityIn.setOwnerHead(getCustomHead(tileEntityIn.getOwnerName()));
+			if(tileEntityIn.getOwnerHead().getItem() == Items.AIR)
+				NetworkUtil.setPlayerHeadMessage(tileEntityIn.getPos(), getCustomHead(tileEntityIn.getOwnerName()));
 		}
 		// We make sure the stack has been initialized before attempting to render it
-		if(tileEntityIn.getOwnerHead() != null)
+		if(tileEntityIn.getOwnerHead().getItem() != Items.AIR)
 			Minecraft.getInstance().getItemRenderer().renderItem(tileEntityIn.getOwnerHead(), TransformType.FIXED, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn);
 	}
 	

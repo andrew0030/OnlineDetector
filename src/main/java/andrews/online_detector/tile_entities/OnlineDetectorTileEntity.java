@@ -10,6 +10,7 @@ import andrews.online_detector.registry.ODTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -23,7 +24,7 @@ public class OnlineDetectorTileEntity extends TileEntity implements ITickableTil
 	protected UUID ownerID;
 	protected String ownerName;
 	protected int updateFrequency;
-	protected ItemStack ownerHead;
+	protected ItemStack ownerHead = new ItemStack(Items.AIR);
 	
 	public OnlineDetectorTileEntity()
 	{
@@ -125,6 +126,8 @@ public class OnlineDetectorTileEntity extends TileEntity implements ITickableTil
 			onlineDetectorNBT.putUniqueId("OwnerID", this.ownerID);
 		if(this.ownerName != null)
 			onlineDetectorNBT.putString("OwnerName", this.ownerName);
+		if(this.ownerHead != null)
+			onlineDetectorNBT.put("OwnerHead", this.ownerHead.write(new CompoundNBT()));
 		compound.put("OnlineDetectorValues", onlineDetectorNBT);
 		return compound;
 	}
@@ -139,6 +142,8 @@ public class OnlineDetectorTileEntity extends TileEntity implements ITickableTil
 			this.ownerID = onlineDetectorNBT.getUniqueId("OwnerID");
 		if(onlineDetectorNBT.contains("OwnerName", NBT.TAG_STRING))
 			this.ownerName = onlineDetectorNBT.getString("OwnerName");
+		if(onlineDetectorNBT.contains("OwnerHead"))
+			this.ownerHead = ItemStack.read(onlineDetectorNBT.getCompound("OwnerHead"));
 	}
 	
 	/**
