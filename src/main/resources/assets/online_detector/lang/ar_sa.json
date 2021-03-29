@@ -1,0 +1,10 @@
+{	
+"_comment": "Blocks",
+	"block.online_detector.online_detector": "كاشف عبر الإنترنت",
+	"block.online_detector.advanced_online_detector": "كاشف متقدم عبر الإنترنت",
+	
+"_comment1": "GUI",
+	"gui.online_detector.advanced_online_detector": "كاشف متقدم عبر الإنترنت",
+	"gui.online_detector.tracking": "تتبع حاليا :",
+	"gui.online_detector.available": "اللاعبون المتاحون للتتبع :"
+}

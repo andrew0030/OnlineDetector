@@ -1,0 +1,10 @@
+{	
+"_comment": "Blocks",
+	"block.online_detector.online_detector": "Détecteur En Ligne",
+	"block.online_detector.advanced_online_detector": "Détecteur En Ligne Avancé",
+	
+"_comment1": "GUI",
+	"gui.online_detector.advanced_online_detector": "Détecteur En Ligne Avancé",
+	"gui.online_detector.tracking": "Suivi en Cours:",
+	"gui.online_detector.available": "Joueurs Disponibles Pour Le Suivi:"
+}

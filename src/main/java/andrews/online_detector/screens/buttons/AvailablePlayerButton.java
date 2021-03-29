@@ -84,8 +84,13 @@ public class AvailablePlayerButton extends Button
 		if(!(buttonIndex < (screen.getCurrentPage() * 5) - 5 || buttonIndex >= screen.getCurrentPage() * 5))
 		{
 			this.fontRenderer.drawString(matrixStack, Minecraft.getInstance().world.getPlayerByUuid(playerInfo.getGameProfile().getId()).getName().getString(), x + 12, y + 2, 0x000000);
+			matrixStack.push();
+			matrixStack.translate(x + 1, y + 1, 0);
+			matrixStack.scale(1.25F, 1.25F, 1.0F);
 			Minecraft.getInstance().getTextureManager().bindTexture(playerInfo.getLocationSkin());
-			AbstractGui.blit(matrixStack, x + 2, y + 2, 8, 8, 8.0F, 8, 8, 8, 64, 64);
+			AbstractGui.blit(matrixStack, 0, 0, 8, 8, 8.0F, 8, 8, 8, 64, 64);
+			
+			matrixStack.pop();
 		}
 	}
 }

@@ -1,0 +1,10 @@
+{	
+"_comment": "Blocos",
+	"block.online_detector.online_detector": "Detector online",
+	"block.online_detector.advanced_online_detector": "Detector online avançado",
+	
+"_comment1": "GUI",
+	"gui.online_detector.advanced_online_detector": "Detector online avançado",
+	"gui.online_detector.tracking": "Rastreando agora:",
+	"gui.online_detector.available": "Jogadores válidos para rastreio:"
+}
