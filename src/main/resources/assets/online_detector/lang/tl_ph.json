@@ -1,0 +1,10 @@
+{	
+"_comment": "Blocks",
+	"block.online_detector.online_detector": "Online Detector",
+	"block.online_detector.advanced_online_detector": "Advanced na Online Detector",
+	
+"_comment1": "GUI",
+	"gui.online_detector.advanced_online_detector": "Advanced na Online Detector",
+	"gui.online_detector.tracking": "Kasalukuyang Sinusubaybayan:",
+	"gui.online_detector.available": "Mga Manlalaro na Maaaring Subaybayan:"
+}

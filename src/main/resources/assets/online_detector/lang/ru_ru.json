@@ -1,0 +1,10 @@
+{	
+"_comment": "Blocks",
+	"block.online_detector.online_detector": "Онлайн-детектор",
+	"block.online_detector.advanced_online_detector": "Продвинутый Онлайн-детектор",
+	
+"_comment1": "GUI",
+	"gui.online_detector.advanced_online_detector": "Продвинутый Онлайн-детектор",
+	"gui.online_detector.tracking": "Сейчас Отслеживается:",
+	"gui.online_detector.available": "Доступные для Отслеживания:"
+}
