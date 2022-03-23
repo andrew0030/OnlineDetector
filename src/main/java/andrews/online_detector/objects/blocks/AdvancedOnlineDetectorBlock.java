@@ -1,46 +1,50 @@
 package andrews.online_detector.objects.blocks;
 
 import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
-import andrews.online_detector.tile_entities.AdvancedOnlineDetectorTileEntity;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
+import andrews.online_detector.block_entities.OnlineDetectorBlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
 
 public class AdvancedOnlineDetectorBlock extends OnlineDetectorBlock
-{	
+{
 	@Override
-	public boolean hasTileEntity(BlockState state)
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
 	{
-		return true;
+		return new AdvancedOnlineDetectorBlockEntity(pos, state);
 	}
-	
+
+	@Nullable
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world)
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType)
 	{
-		return new AdvancedOnlineDetectorTileEntity();
+		return (level1, pos, state1, blockEntity) -> AdvancedOnlineDetectorBlockEntity.tick(level1, pos, state1, (OnlineDetectorBlockEntity) blockEntity);
 	}
-	
+
+	// We Overide this here to avoid setting the block placer as the tracking target, for the advanced online detector.
 	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {}
-	
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {}
+
 	@Override
-	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
 	{
-		super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
-		if(!player.isSneaking() && worldIn.getTileEntity(pos) instanceof AdvancedOnlineDetectorTileEntity)
+		super.use(state, level, pos, player, hand, hit);
+		if(!player.isShiftKeyDown() && level.getBlockEntity(pos) instanceof AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorBlockEntity)
 		{
-			AdvancedOnlineDetectorTileEntity advancedOnlineDetectorTileEntity = (AdvancedOnlineDetectorTileEntity) worldIn.getTileEntity(pos);
-			if(worldIn.isRemote)
-				AdvancedOnlineDetectorScreen.open(advancedOnlineDetectorTileEntity);
+			if(level.isClientSide)
+				AdvancedOnlineDetectorScreen.open(advancedOnlineDetectorBlockEntity);
 		}
-		return ActionResultType.SUCCESS;
+		return InteractionResult.SUCCESS;
 	}
 }

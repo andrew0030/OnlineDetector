@@ -3,20 +3,20 @@ package andrews.online_detector.network.server;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-import andrews.online_detector.tile_entities.AdvancedOnlineDetectorTileEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.network.NetworkEvent;
 
 public class MessageServerSelectPlayer
 {
-	private BlockPos pos;
-	private UUID uuid;
-	private String name;
+	private final BlockPos pos;
+	private final UUID uuid;
+	private final String name;
 	
 	public MessageServerSelectPlayer(BlockPos pos, UUID uuid, String name)
 	{
@@ -25,27 +25,27 @@ public class MessageServerSelectPlayer
         this.name = name;
     }
 	
-	public void serialize(PacketBuffer buf)
+	public void serialize(FriendlyByteBuf buf)
 	{
 		buf.writeBlockPos(pos);
-		buf.writeUniqueId(uuid);
-		buf.writeString(name);
+		buf.writeUUID(uuid);
+		buf.writeUtf(name);
 	}
 	
-	public static MessageServerSelectPlayer deserialize(PacketBuffer buf)
+	public static MessageServerSelectPlayer deserialize(FriendlyByteBuf buf)
 	{
 		BlockPos pos = buf.readBlockPos();
-		UUID uuid = buf.readUniqueId();
-		String name = buf.readString(32767);
+		UUID uuid = buf.readUUID();
+		String name = buf.readUtf(32767);
 		return new MessageServerSelectPlayer(pos, uuid, name);
 	}
 	
 	public static void handle(MessageServerSelectPlayer message, Supplier<NetworkEvent.Context> ctx)
 	{
 		NetworkEvent.Context context = ctx.get();
-		PlayerEntity player = context.getSender();
-		World world = player.getEntityWorld();
-		BlockPos tileEntityPos = message.pos;
+		Player player = context.getSender();
+		Level level = player.getLevel();
+		BlockPos blockEntityPos = message.pos;
 		UUID uuid = message.uuid;
 		String name = message.name;
 		
@@ -53,16 +53,15 @@ public class MessageServerSelectPlayer
 		{
 			context.enqueueWork(() ->
 			{
-				if(world != null)
+				if(level != null)
 				{
-					TileEntity tileentity = world.getTileEntity(tileEntityPos);
+					BlockEntity blockEntity = level.getBlockEntity(blockEntityPos);
 					// We make sure the TileEntity is a ChessTileEntity
-					if(tileentity instanceof AdvancedOnlineDetectorTileEntity)
+					if(blockEntity instanceof AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorBlockEntity)
 			        {
-						AdvancedOnlineDetectorTileEntity advancedOnlineDetectorTileEntity = (AdvancedOnlineDetectorTileEntity)tileentity;
-						advancedOnlineDetectorTileEntity.setOwnerUUID(uuid);
-						advancedOnlineDetectorTileEntity.setOwnerName(name);
-						world.notifyBlockUpdate(message.pos, world.getBlockState(tileEntityPos), world.getBlockState(tileEntityPos), 2);
+						advancedOnlineDetectorBlockEntity.setOwnerUUID(uuid);
+						advancedOnlineDetectorBlockEntity.setOwnerName(name);
+						level.sendBlockUpdated(message.pos, level.getBlockState(blockEntityPos), level.getBlockState(blockEntityPos), 2);
 			        }
 				}
 			});

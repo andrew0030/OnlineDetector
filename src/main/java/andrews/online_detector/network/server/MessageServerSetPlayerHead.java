@@ -2,20 +2,20 @@ package andrews.online_detector.network.server;
 
 import java.util.function.Supplier;
 
-import andrews.online_detector.tile_entities.AdvancedOnlineDetectorTileEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.network.NetworkEvent;
 
 public class MessageServerSetPlayerHead
 {
-	private BlockPos pos;
-	private ItemStack stack;
+	private final BlockPos pos;
+	private final ItemStack stack;
 	
 	public MessageServerSetPlayerHead(BlockPos pos, ItemStack stack)
 	{
@@ -23,40 +23,39 @@ public class MessageServerSetPlayerHead
         this.stack = stack;
     }
 	
-	public void serialize(PacketBuffer buf)
+	public void serialize(FriendlyByteBuf buf)
 	{
 		buf.writeBlockPos(pos);
-		buf.writeItemStack(stack);
+		buf.writeItemStack(stack, false);
 	}
 	
-	public static MessageServerSetPlayerHead deserialize(PacketBuffer buf)
+	public static MessageServerSetPlayerHead deserialize(FriendlyByteBuf buf)
 	{
 		BlockPos pos = buf.readBlockPos();
-		ItemStack stack = buf.readItemStack();
+		ItemStack stack = buf.readItem();
 		return new MessageServerSetPlayerHead(pos, stack);
 	}
 	
 	public static void handle(MessageServerSetPlayerHead message, Supplier<NetworkEvent.Context> ctx)
 	{
 		NetworkEvent.Context context = ctx.get();
-		PlayerEntity player = context.getSender();
-		World world = player.getEntityWorld();
-		BlockPos tileEntityPos = message.pos;
+		Player player = context.getSender();
+		Level level = player.getLevel();
+		BlockPos blockEntityPos = message.pos;
 		ItemStack stack = message.stack;
 		
 		if(context.getDirection().getReceptionSide() == LogicalSide.SERVER)
 		{
 			context.enqueueWork(() ->
 			{
-				if(world != null)
+				if(level != null)
 				{
-					TileEntity tileentity = world.getTileEntity(tileEntityPos);
+					BlockEntity blockEntity = level.getBlockEntity(blockEntityPos);
 					// We make sure the TileEntity is a ChessTileEntity
-					if(tileentity instanceof AdvancedOnlineDetectorTileEntity)
+					if(blockEntity instanceof AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorBlockEntity)
 			        {
-						AdvancedOnlineDetectorTileEntity advancedOnlineDetectorTileEntity = (AdvancedOnlineDetectorTileEntity)tileentity;
-						advancedOnlineDetectorTileEntity.setOwnerHead(stack);
-						world.notifyBlockUpdate(message.pos, world.getBlockState(tileEntityPos), world.getBlockState(tileEntityPos), 2);
+						advancedOnlineDetectorBlockEntity.setOwnerHead(stack);
+						level.sendBlockUpdated(message.pos, level.getBlockState(blockEntityPos), level.getBlockState(blockEntityPos), 2);
 			        }
 				}
 			});

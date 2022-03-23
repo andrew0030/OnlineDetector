@@ -1,7 +1,7 @@
 package andrews.online_detector.registry;
 
 import andrews.online_detector.util.Reference;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

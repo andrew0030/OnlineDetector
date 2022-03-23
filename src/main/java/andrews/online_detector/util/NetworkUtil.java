@@ -5,8 +5,8 @@ import java.util.UUID;
 import andrews.online_detector.network.ODNetwork;
 import andrews.online_detector.network.server.MessageServerSelectPlayer;
 import andrews.online_detector.network.server.MessageServerSetPlayerHead;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

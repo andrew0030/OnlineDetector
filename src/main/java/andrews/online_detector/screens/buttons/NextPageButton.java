@@ -1,16 +1,14 @@
 package andrews.online_detector.screens.buttons;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
-
 import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
-import andrews.online_detector.tile_entities.AdvancedOnlineDetectorTileEntity;
+import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
 import andrews.online_detector.util.Reference;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.fml.client.gui.GuiUtils;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
+
 
 public class NextPageButton extends Button
 {
@@ -21,37 +19,36 @@ public class NextPageButton extends Button
 	private int v = 169;
 	private static AdvancedOnlineDetectorScreen screen;
 	
-	public NextPageButton(AdvancedOnlineDetectorTileEntity advancedOnlineDetectorTileEntity1, int xPos, int yPos, AdvancedOnlineDetectorScreen onlineDetectorScreen) 
+	public NextPageButton(AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorTileEntity1, int xPos, int yPos, AdvancedOnlineDetectorScreen onlineDetectorScreen)
 	{
-		super(xPos, yPos, buttonWidth, buttonHeight, new StringTextComponent(""), (button) -> { handleButtonPress(); });
+		super(xPos, yPos, buttonWidth, buttonHeight, new TextComponent(""), (button) -> { handleButtonPress(); });
 		screen = onlineDetectorScreen;
 	}
-	
+
 	@Override
-	public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
-	{	
-		this.isHovered = false;
-		if(mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height || this.isFocused())
-			this.isHovered = true;
-		
+	public void renderButton(PoseStack poseStack, int mouseX, int mouseY, float pPartialTick)
+	{
+		this.isHovered = mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height || this.isFocused();
+
 		this.u = 0;
 		if(this.isHovered)
 			this.u = 14;
-		
+
 		this.active = true;
 		if(!(screen.getCurrentPage() < screen.getTotalPages()))
 		{
 			this.active = false;
 			this.u = 28;
 		}
-		
+
 		//Renders the Button
-		Minecraft.getInstance().getRenderManager().textureManager.bindTexture(TEXTURE);
-		matrixStack.push();
+		RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+		RenderSystem.setShaderTexture(0, TEXTURE);
+		poseStack.pushPose();
 		RenderSystem.enableBlend();
-		GuiUtils.drawTexturedModalRect(matrixStack, x, y, u, v, width, height, 0);
+		this.blit(poseStack, x, y, u, v, width, height);
 		RenderSystem.disableBlend();
-		matrixStack.pop();
+		poseStack.popPose();
 	}
 	
 	/**
