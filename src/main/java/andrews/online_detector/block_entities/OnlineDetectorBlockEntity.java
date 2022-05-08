@@ -32,7 +32,7 @@ public class OnlineDetectorBlockEntity extends BlockEntity
 	
 	public OnlineDetectorBlockEntity(BlockPos pos, BlockState state)
 	{
-		super(ODBlockEntities.ONLINE_DETECTOR.get(), pos, state);
+		super(ODBlockEntities.ONLINE_DETECTOR, pos, state);
 		updateFrequency = ODConfigs.ODCommonConfig.onlineCheckFrequency.get();
 	}
 	
@@ -84,32 +84,28 @@ public class OnlineDetectorBlockEntity extends BlockEntity
 	}
 
 	// Used to synchronize the TileEntity with the client when the chunk it is in is loaded
-	@Override
-	public void handleUpdateTag(CompoundTag compound)
-	{
-		//this.load(tag);
-		this.loadFromNBT(compound);
-	}
+//	@Override
+//	public void handleUpdateTag(CompoundTag compound) //TODO fix this
+//	{
+//		//this.load(tag);
+//		this.loadFromNBT(compound);
+//	}
 
 	// Used to synchronize the TileEntity with the client when the chunk it is in is loaded
 	@Nullable
 	@Override
 	public Packet<ClientGamePacketListener> getUpdatePacket()
 	{
-		//ClientboundBlockEntityDataPacket packet = ClientboundBlockEntityDataPacket.create(this);
-		//this.load(packet.getTag());
-		//return packet;
-
 		// Will get tag from #getUpdateTag
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 
 	// Used to synchronize the TileEntity with the client onBlockUpdate
-	@Override
-	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt)
-	{
-		this.loadFromNBT(pkt.getTag());
-	}
+//	@Override
+//	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) //TODO fix this
+//	{
+//		this.loadFromNBT(pkt.getTag());
+//	}
 
 	@Override
 	protected void saveAdditional(CompoundTag compound)

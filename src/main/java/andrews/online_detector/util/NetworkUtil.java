@@ -1,26 +1,31 @@
 package andrews.online_detector.util;
 
-import java.util.UUID;
-
-import andrews.online_detector.network.ODNetwork;
 import andrews.online_detector.network.server.MessageServerSelectPlayer;
 import andrews.online_detector.network.server.MessageServerSetPlayerHead;
+import io.netty.buffer.Unpooled;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.UUID;
 
 public class NetworkUtil
 {
-	@OnlyIn(Dist.CLIENT)
 	public static void newSelectPlayerMessage(BlockPos pos, UUID uuid, String name)
 	{
-		ODNetwork.CHANNEL.sendToServer(new MessageServerSelectPlayer(pos, uuid, name));
+		FriendlyByteBuf passedData = new FriendlyByteBuf(Unpooled.buffer());
+		passedData.writeBlockPos(pos);
+		passedData.writeUUID(uuid);
+		passedData.writeUtf(name);
+		ClientPlayNetworking.send(MessageServerSelectPlayer.PACKET_ID, passedData);
 	}
-	
-	@OnlyIn(Dist.CLIENT)
+
 	public static void setPlayerHeadMessage(BlockPos pos, ItemStack stack)
 	{
-		ODNetwork.CHANNEL.sendToServer(new MessageServerSetPlayerHead(pos, stack));
+		FriendlyByteBuf passedData = new FriendlyByteBuf(Unpooled.buffer());
+		passedData.writeBlockPos(pos);
+		passedData.writeItem(stack);
+		ClientPlayNetworking.send(MessageServerSetPlayerHead.PACKET_ID, passedData);
 	}
 }

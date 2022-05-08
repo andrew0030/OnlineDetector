@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "online_detector",
+  "version": "${version}",
+
+  "name": "Online Detector",
+  "description": "Online Detector is a Mod that adds Blocks, that allow you to detect if a Player is online.",
+  "authors": ["andrew0030"],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/online-detector",
+    "sources": "https://github.com/andrew0030/OnlineDetector"
+  },
+
+  "license": "GNU Lesser General Public License v3.0",
+  "icon": "logo.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": ["andrews.online_detector.OnlineDetector"]
+  },
+  "mixins": ["online_detector.mixins.json"],
+
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "~1.18.2",
+    "java": ">=17"
+  }
+}

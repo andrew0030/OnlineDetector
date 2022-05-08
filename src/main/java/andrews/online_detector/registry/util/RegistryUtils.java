@@ -1,26 +1,23 @@
 package andrews.online_detector.registry.util;
 
-import java.util.function.Supplier;
-
-import javax.annotation.Nullable;
-
-import andrews.online_detector.registry.ODBlocks;
-import andrews.online_detector.registry.ODItems;
+import andrews.online_detector.util.Reference;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.RegistryObject;
+
+import javax.annotation.Nullable;
 
 public class RegistryUtils
 {
 	/**
 	 * Creates a Block
 	 */
-	public static <B extends Block> RegistryObject<B> createBlock(String name, Supplier<? extends B> supplier, @Nullable CreativeModeTab group)
+	public static Block createBlock(String name, Block block, @Nullable CreativeModeTab group)
 	{
-		RegistryObject<B> block = ODBlocks.BLOCKS.register(name, supplier);
-		ODItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(group)));
-		return block;
+		Registry.register(Registry.ITEM, new ResourceLocation(Reference.MODID, name), new BlockItem(block, new Item.Properties().tab(group)));
+		return Registry.register(Registry.BLOCK, new ResourceLocation(Reference.MODID, name), block);
 	}
 }

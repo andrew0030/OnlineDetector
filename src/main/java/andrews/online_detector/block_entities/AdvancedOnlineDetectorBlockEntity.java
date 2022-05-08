@@ -15,7 +15,7 @@ public class AdvancedOnlineDetectorBlockEntity extends OnlineDetectorBlockEntity
 {
 	public AdvancedOnlineDetectorBlockEntity(BlockPos pos, BlockState state)
 	{
-		super(ODBlockEntities.ADVANCED_ONLINE_DETECTOR.get(), pos, state);
+		super(ODBlockEntities.ADVANCED_ONLINE_DETECTOR, pos, state);
 	}
 
 	public static void tick(Level level, BlockPos pos, BlockState state, AdvancedOnlineDetectorBlockEntity blockEntity)
