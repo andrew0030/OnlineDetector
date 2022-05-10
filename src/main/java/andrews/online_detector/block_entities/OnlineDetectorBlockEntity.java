@@ -1,16 +1,13 @@
 package andrews.online_detector.block_entities;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import andrews.online_detector.config.ODConfigs;
+import andrews.online_detector.OnlineDetector;
+import andrews.online_detector.config.ODConfig;
 import andrews.online_detector.objects.blocks.OnlineDetectorBlock;
 import andrews.online_detector.registry.ODBlockEntities;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -23,6 +20,10 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 public class OnlineDetectorBlockEntity extends BlockEntity
 {
 	protected UUID ownerID;
@@ -33,13 +34,13 @@ public class OnlineDetectorBlockEntity extends BlockEntity
 	public OnlineDetectorBlockEntity(BlockPos pos, BlockState state)
 	{
 		super(ODBlockEntities.ONLINE_DETECTOR, pos, state);
-		updateFrequency = ODConfigs.ODCommonConfig.onlineCheckFrequency.get();
+		updateFrequency = OnlineDetector.OD_CONFIG.ODCommonConfig.onlineCheckFrequency;
 	}
 	
 	public OnlineDetectorBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state)
 	{
 		super(blockEntityType, pos, state);
-		updateFrequency = ODConfigs.ODCommonConfig.onlineCheckFrequency.get();
+		updateFrequency = OnlineDetector.OD_CONFIG.ODCommonConfig.onlineCheckFrequency;
 	}
 
 	public static void tick(Level level, BlockPos pos, BlockState state, OnlineDetectorBlockEntity blockEntity)
@@ -84,14 +85,6 @@ public class OnlineDetectorBlockEntity extends BlockEntity
 	}
 
 	// Used to synchronize the TileEntity with the client when the chunk it is in is loaded
-//	@Override
-//	public void handleUpdateTag(CompoundTag compound) //TODO fix this
-//	{
-//		//this.load(tag);
-//		this.loadFromNBT(compound);
-//	}
-
-	// Used to synchronize the TileEntity with the client when the chunk it is in is loaded
 	@Nullable
 	@Override
 	public Packet<ClientGamePacketListener> getUpdatePacket()
@@ -99,13 +92,6 @@ public class OnlineDetectorBlockEntity extends BlockEntity
 		// Will get tag from #getUpdateTag
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
-
-	// Used to synchronize the TileEntity with the client onBlockUpdate
-//	@Override
-//	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) //TODO fix this
-//	{
-//		this.loadFromNBT(pkt.getTag());
-//	}
 
 	@Override
 	protected void saveAdditional(CompoundTag compound)

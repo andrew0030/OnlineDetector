@@ -1,29 +1,22 @@
 package andrews.online_detector.config.configs;
 
-import andrews.online_detector.config.util.ConfigHelper;
-import andrews.online_detector.config.util.ConfigHelper.ConfigValueListener;
-import net.minecraftforge.common.ForgeConfigSpec;
+import me.shedaniel.autoconfig.ConfigData;
+import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
-public class ODClientConfig
+@Config(name = "Client")
+public class ODClientConfig implements ConfigData
 {
-	public static class ODClientConfigValues
-	{
-		public ConfigValueListener<Boolean> shouldShowRedstoneParticles;
-		public ConfigValueListener<Boolean> shouldShowPortalParticles;
+    @ConfigEntry.Gui.PrefixText
+    @ConfigEntry.Gui.Tooltip(count = 0)
+    @Comment(value = """
+            Whether or not there should be Redstone particles while the Online Detector Block is active.""")
+    public boolean shouldShowRedstoneParticles = true;
 
-		public ODClientConfigValues(ForgeConfigSpec.Builder builder, ConfigHelper.Subscriber subscriber)
-		{
-			builder.comment(" Client Settings for Online Detector")
-            .push("Particles");
-			
-				shouldShowRedstoneParticles = subscriber.subscribe(builder
-					.comment(" Whether or not there should be Redstone particles while the Online Detector Block is active.")
-					.define("shouldShowRedstoneParticles", true));
-				shouldShowPortalParticles = subscriber.subscribe(builder
-					.comment(" Whether or not there should be Portal particles while the Online Detector Block is active.")
-					.define("shouldShowPortalParticles", true));
-				
-			builder.pop();
-		}
-	}
+    @ConfigEntry.Gui.PrefixText
+    @ConfigEntry.Gui.Tooltip(count = 0)
+    @Comment(value = """
+            Whether or not there should be Portal particles while the Online Detector Block is active.""")
+    public boolean shouldShowPortalParticles = true;
 }

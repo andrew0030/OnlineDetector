@@ -8,7 +8,8 @@
   "authors": ["andrew0030"],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/online-detector",
-    "sources": "https://github.com/andrew0030/OnlineDetector"
+    "sources": "https://github.com/andrew0030/OnlineDetector",
+    "issues": "https://github.com/andrew0030/OnlineDetector/issues"
   },
 
   "license": "GNU Lesser General Public License v3.0",
@@ -16,14 +17,23 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": ["andrews.online_detector.OnlineDetector"]
+    "main": ["andrews.online_detector.OnlineDetector"],
+    "modmenu": [
+      "andrews.online_detector.config.ModMenuConfig"
+    ],
+    "client": [
+      {
+        "value": "andrews.online_detector.util.ODClientInit"
+      }
+    ]
   },
   "mixins": ["online_detector.mixins.json"],
 
   "depends": {
     "fabricloader": ">=0.13.3",
-    "fabric": "*",
+    "fabric": ">=0.47.8",
     "minecraft": "~1.18.2",
-    "java": ">=17"
+    "java": ">=17",
+    "cloth-config2": ">=6.2.62"
   }
 }

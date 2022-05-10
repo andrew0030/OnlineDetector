@@ -1,7 +1,9 @@
 package andrews.online_detector.objects.blocks;
 
-import andrews.online_detector.config.ODConfigs;
+import andrews.online_detector.OnlineDetector;
 import andrews.online_detector.block_entities.OnlineDetectorBlockEntity;
+import andrews.online_detector.config.ODConfig;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -163,7 +165,7 @@ public class OnlineDetectorBlock extends BaseEntityBlock
 	{
 		if((state.getValue(IS_ACTIVE) && !state.getValue(IS_INVERTED)) || (!state.getValue(IS_ACTIVE) && state.getValue(IS_INVERTED)))
 		{
-			if(ODConfigs.ODClientConfig.shouldShowRedstoneParticles.get())
+			if(OnlineDetector.OD_CONFIG.ODClientConfig.shouldShowRedstoneParticles)
 			{
 				level.addParticle(DustParticleOptions.REDSTONE, pos.getX() + PIXEL_SIZE * 8, pos.getY() + PIXEL_SIZE * 2, pos.getZ() - PIXEL_SIZE, 0.0D, 0.0D, 0.0D);
 				level.addParticle(DustParticleOptions.REDSTONE, pos.getX() + PIXEL_SIZE * 8, pos.getY() + PIXEL_SIZE * 2, pos.getZ() + PIXEL_SIZE * 17, 0.0D, 0.0D, 0.0D);
@@ -175,7 +177,7 @@ public class OnlineDetectorBlock extends BaseEntityBlock
 
 		if(state.getValue(IS_ACTIVE))
 		{
-			if(ODConfigs.ODClientConfig.shouldShowPortalParticles.get())
+			if(OnlineDetector.OD_CONFIG.ODClientConfig.shouldShowPortalParticles)
 			{
 				for(int i = 0; i < 3; ++i)
 				{

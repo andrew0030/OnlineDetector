@@ -10,4 +10,6 @@ public class ODBlocks
 {
 	public static final Block ONLINE_DETECTOR = RegistryUtils.createBlock("online_detector", new OnlineDetectorBlock(), CreativeModeTab.TAB_REDSTONE);
 	public static final Block ADVANCED_ONLINE_DETECTOR = RegistryUtils.createBlock("advanced_online_detector", new AdvancedOnlineDetectorBlock(), CreativeModeTab.TAB_REDSTONE);
+
+	public static void init() {}
 }
