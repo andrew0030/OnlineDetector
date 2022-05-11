@@ -1,10 +1,8 @@
 package andrews.online_detector.block_entities;
 
 import andrews.online_detector.OnlineDetector;
-import andrews.online_detector.config.ODConfig;
 import andrews.online_detector.objects.blocks.OnlineDetectorBlock;
 import andrews.online_detector.registry.ODBlockEntities;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
