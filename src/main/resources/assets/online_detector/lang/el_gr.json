@@ -6,5 +6,17 @@
 "_comment1": "GUI",
 	"gui.online_detector.advanced_online_detector": "Ανώτερος Ανιχνευτής Παικτών",
 	"gui.online_detector.tracking": "Τρέχουσα Παρακολούθηση:",
-	"gui.online_detector.available": "Διαθέσιμοι για Παρακολούθηση:"
+	"gui.online_detector.available": "Διαθέσιμοι για Παρακολούθηση:",
+
+"_comment2": "Config",
+	"text.autoconfig.online_detector.title": "Ρυθμίσεις του Ανιχνευτή Παικτών",
+	"text.autoconfig.online_detector.category.common": "Κοινές Ρυθμίσεις",
+	"text.autoconfig.online_detector.category.client": "Ρυθμίσεις Παικτών",
+
+	"text.autoconfig.online_detector.option.ODCommonConfig.onlineCheckFrequency.@PrefixText": "Πόσο συχνά ο Ανιχνευτής Παικτών ελέγχει αν ο παίκτης είναι ενεργός, ο χρόνος μετριέται σε ticks (20 ticks είναι 1 δευτερόλεπτο), δεν συνιστάται να ορίσετε αυτήν την τιμή κάτω από 20",
+	"text.autoconfig.online_detector.option.ODCommonConfig.onlineCheckFrequency": "Συχνότητα Ελέγχου",
+	"text.autoconfig.online_detector.option.ODClientConfig.shouldShowRedstoneParticles.@PrefixText": "Αν θα πρέπει να υπάρχουν σωματίδια Redstone καθώς είναι ενεργός ο Ανιχνευτής Παικτών.",
+	"text.autoconfig.online_detector.option.ODClientConfig.shouldShowRedstoneParticles": "Εμφάνιση Σωματίδιων Redstone",
+	"text.autoconfig.online_detector.option.ODClientConfig.shouldShowPortalParticles.@PrefixText": "Αν θα πρέπει να υπάρχουν σωματίδια Portal καθώς είναι ενεργός ο Ανιχνευτής Παικτών.",
+	"text.autoconfig.online_detector.option.ODClientConfig.shouldShowPortalParticles": "Εμφάνιση Σωματίδιων Portal"
 }

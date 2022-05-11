@@ -1,10 +1,22 @@
-{	
-"_comment": "Blocks",
+{
+	"_comment": "Blocks",
 	"block.online_detector.online_detector": "Detector Online",
 	"block.online_detector.advanced_online_detector": "Detector Online Avanzado",
-	
-"_comment1": "GUI",
+
+	"_comment1": "GUI",
 	"gui.online_detector.advanced_online_detector": "Detector Online Avanzado",
-	"gui.online_detector.tracking": "Siguiendo a:",
-	"gui.online_detector.available": "Jugadores Disponibles:"
+	"gui.online_detector.tracking": "Rastreando a:",
+	"gui.online_detector.available": "Jugadores Disponibles:",
+
+	"_comment2": "Config",
+	"text.autoconfig.online_detector.title": "Detector Online Config.",
+	"text.autoconfig.online_detector.category.common": "Común",
+	"text.autoconfig.online_detector.category.client": "Cliente",
+
+	"text.autoconfig.online_detector.option.ODCommonConfig.onlineCheckFrequency.@PrefixText": "Frecuencia con la que el Detector Online revisa si el jugador rastreado está online, este valor está medido en ticks (20 ticks son 1 segundo), no se recomienda establecerlo en menos de 20",
+	"text.autoconfig.online_detector.option.ODCommonConfig.onlineCheckFrequency": "Frecuencia de Chequeo Online",
+	"text.autoconfig.online_detector.option.ODClientConfig.shouldShowRedstoneParticles.@PrefixText": "El Detector Online emite partículas de Redstone mientras se encuentra activo.",
+	"text.autoconfig.online_detector.option.ODClientConfig.shouldShowRedstoneParticles": "Mostrar Partículas de Redstone",
+	"text.autoconfig.online_detector.option.ODClientConfig.shouldShowPortalParticles.@PrefixText": "El Detector Online emite partículas de Portal mientras se encuentra activo.",
+	"text.autoconfig.online_detector.option.ODClientConfig.shouldShowPortalParticles": "Mostrar Partículas de Portal"
 }
