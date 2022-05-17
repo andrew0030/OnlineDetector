@@ -2,9 +2,21 @@
 "_comment": "Blocks",
 	"block.online_detector.online_detector": "在线检测器",
 	"block.online_detector.advanced_online_detector": "高级在线检测器",
-	
+
 "_comment1": "GUI",
 	"gui.online_detector.advanced_online_detector": "高级在线检测器",
 	"gui.online_detector.tracking": "正在追踪：",
-	"gui.online_detector.available": "可追踪玩家："
+	"gui.online_detector.available": "可追踪玩家：",
+
+"_comment2": "Config",
+	"text.autoconfig.online_detector.title": "在线检测器配置",
+	"text.autoconfig.online_detector.category.common": "普通",
+	"text.autoconfig.online_detector.category.client": "客户端",
+
+	"text.autoconfig.online_detector.option.ODCommonConfig.onlineCheckFrequency.@PrefixText": "如果目标玩家在线，多久检测一次。单位为刻，20刻=1秒。不推荐数值设置低于20。",
+	"text.autoconfig.online_detector.option.ODCommonConfig.onlineCheckFrequency": "在线检测频率",
+	"text.autoconfig.online_detector.option.ODClientConfig.shouldShowRedstoneParticles.@PrefixText": "在线检测器方块激活时，是否显示红石粒子特效",
+	"text.autoconfig.online_detector.option.ODClientConfig.shouldShowRedstoneParticles": "显示红石粒子特效",
+	"text.autoconfig.online_detector.option.ODClientConfig.shouldShowPortalParticles.@PrefixText": "在线检测器方块激活时，是否显示传送门粒子特效",
+	"text.autoconfig.online_detector.option.ODClientConfig.shouldShowPortalParticles": "显示传送门粒子特效"
 }
