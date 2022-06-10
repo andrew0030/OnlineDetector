@@ -1,12 +1,9 @@
 package andrews.online_detector.screens.menus;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
+import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
 import andrews.online_detector.screens.buttons.AvailablePlayerButton;
 import andrews.online_detector.screens.buttons.NextPageButton;
 import andrews.online_detector.screens.buttons.PreviousPageButton;
-import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
 import andrews.online_detector.util.Reference;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -14,16 +11,18 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.multiplayer.PlayerInfo;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class AdvancedOnlineDetectorScreen extends Screen
 {
 	private static final ResourceLocation MENU_TEXTURE = new ResourceLocation(Reference.MODID, "textures/gui/menus/advanced_online_detector_menu.png");
-	private final String advancedOnlineDetectorText = new TranslatableComponent("gui.online_detector.advanced_online_detector").getString();
-	private final String trackingText = new TranslatableComponent("gui.online_detector.tracking").getString();
-	private final String availableText = new TranslatableComponent("gui.online_detector.available").getString();
+	private final String advancedOnlineDetectorText = Component.translatable("gui.online_detector.advanced_online_detector").getString();
+	private final String trackingText = Component.translatable("gui.online_detector.tracking").getString();
+	private final String availableText = Component.translatable("gui.online_detector.available").getString();
 	private final AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorBlockEntity;
 	private final int xSize = 177;
 	private final int ySize = 131;
@@ -32,7 +31,7 @@ public class AdvancedOnlineDetectorScreen extends Screen
 	
 	public AdvancedOnlineDetectorScreen(AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorBlockEntity)
 	{
-		super(new TextComponent(""));
+		super(Component.literal(""));
 		this.advancedOnlineDetectorBlockEntity = advancedOnlineDetectorBlockEntity;
 		currentPage = 1;
 	}
