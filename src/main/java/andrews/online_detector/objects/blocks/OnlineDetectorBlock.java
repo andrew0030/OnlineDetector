@@ -2,12 +2,11 @@ package andrews.online_detector.objects.blocks;
 
 import andrews.online_detector.OnlineDetector;
 import andrews.online_detector.block_entities.OnlineDetectorBlockEntity;
-import andrews.online_detector.config.ODConfig;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,7 +34,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
 import java.util.function.ToIntFunction;
 
 public class OnlineDetectorBlock extends BaseEntityBlock
@@ -161,7 +159,7 @@ public class OnlineDetectorBlock extends BaseEntityBlock
 	}
 
 	@Override
-	public void animateTick(BlockState state, Level level, BlockPos pos, Random random)
+	public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
 	{
 		if((state.getValue(IS_ACTIVE) && !state.getValue(IS_INVERTED)) || (!state.getValue(IS_ACTIVE) && state.getValue(IS_INVERTED)))
 		{

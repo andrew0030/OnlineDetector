@@ -1,7 +1,7 @@
 package andrews.online_detector.screens.buttons;
 
-import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
 import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
+import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
 import andrews.online_detector.util.NetworkUtil;
 import andrews.online_detector.util.Reference;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -11,7 +11,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.multiplayer.PlayerInfo;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -33,7 +33,7 @@ public class AvailablePlayerButton extends Button
 	
 	public AvailablePlayerButton(AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorBlockEntity, PlayerInfo playerInfo, int xPos, int yPos, AdvancedOnlineDetectorScreen screen, int buttonIndex)
 	{
-		super(xPos, yPos, buttonWidth, buttonHeight, new TextComponent(""), null);
+		super(xPos, yPos, buttonWidth, buttonHeight, Component.literal(""), null);
 		this.fontRenderer = Minecraft.getInstance().font;
 		this.advancedOnlineDetectorBlockEntity = advancedOnlineDetectorBlockEntity;
 		this.playerInfo = playerInfo;
