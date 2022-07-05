@@ -4,7 +4,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '5.+'
 }
 
-version = '1.19-3.0.0'
+version = '1.19-3.0.1'
 group = 'com.andrews.online_detector'
 archivesBaseName = 'online_detector'
 
