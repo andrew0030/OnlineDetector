@@ -75,13 +75,12 @@ public class AvailablePlayerButton extends Button
 		RenderSystem.setShaderTexture(0, TEXTURE);
 		poseStack.pushPose();
 		RenderSystem.enableBlend();
-		//GuiUtils.drawTexturedModalRect(poseStack, x, y, u, v, width, height, 0);
 		this.blit(poseStack, x, y, u, v, width, height);
 		RenderSystem.disableBlend();
 		poseStack.popPose();
 		if(!(buttonIndex < (screen.getCurrentPage() * 5) - 5 || buttonIndex >= screen.getCurrentPage() * 5))
 		{
-			this.fontRenderer.draw(poseStack, Minecraft.getInstance().level.getPlayerByUUID(playerInfo.getProfile().getId()).getName().getString(), x + 12, y + 2, 0x000000);
+			this.fontRenderer.draw(poseStack, playerInfo.getProfile().getName(), x + 12, y + 2, 0x000000);
 			poseStack.pushPose();
 			poseStack.translate(x + 1, y + 1, 0);
 			poseStack.scale(1.25F, 1.25F, 1.0F);

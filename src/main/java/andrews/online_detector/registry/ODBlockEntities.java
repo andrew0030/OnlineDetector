@@ -14,7 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ODBlockEntities
 {
-	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, Reference.MODID);
+	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Reference.MODID);
 
 	public static final RegistryObject<BlockEntityType<OnlineDetectorBlockEntity>> ONLINE_DETECTOR = BLOCK_ENTITY_TYPES.register("online_detector", () -> new BlockEntityType<>(OnlineDetectorBlockEntity::new, Sets.newHashSet(ODBlocks.ONLINE_DETECTOR.get()), null));
 	public static final RegistryObject<BlockEntityType<AdvancedOnlineDetectorBlockEntity>> ADVANCED_ONLINE_DETECTOR = BLOCK_ENTITY_TYPES.register("advanced_online_detector", () -> new BlockEntityType<>(AdvancedOnlineDetectorBlockEntity::new, Sets.newHashSet(ODBlocks.ADVANCED_ONLINE_DETECTOR.get()), null));

@@ -6,7 +6,7 @@ license="GNU Lesser General Public License v3.0"
 
 [[mods]]
     modId="online_detector"
-    version="1.19-3.0.1"
+    version="1.19-3.1.0"
     displayName="Online Detector"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/online-detector"
     credits=""
@@ -16,7 +16,7 @@ license="GNU Lesser General Public License v3.0"
 [[dependencies.online_detector]]
     modId="forge"
     mandatory=true
-    versionRange="[41,)"
+    versionRange="[41.0.98,)"
     ordering="NONE"
     side="BOTH"
 
