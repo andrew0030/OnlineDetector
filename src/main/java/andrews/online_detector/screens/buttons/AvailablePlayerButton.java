@@ -44,10 +44,10 @@ public class AvailablePlayerButton extends Button
 	@Override
 	public void onPress()
 	{
-		if(Minecraft.getInstance().level.getPlayerByUUID(playerInfo.getProfile().getId()) != null)
+		if(playerInfo.getProfile().getId() != null)
 		{
 			UUID uuid = playerInfo.getProfile().getId();
-			String name = Minecraft.getInstance().level.getPlayerByUUID(playerInfo.getProfile().getId()).getName().getString();
+			String name = playerInfo.getProfile().getName();
 			NetworkUtil.newSelectPlayerMessage(advancedOnlineDetectorBlockEntity.getBlockPos(), uuid, name);
 			NetworkUtil.setPlayerHeadMessage(advancedOnlineDetectorBlockEntity.getBlockPos(), new ItemStack(Items.AIR));
 		}
@@ -75,7 +75,6 @@ public class AvailablePlayerButton extends Button
 		RenderSystem.setShaderTexture(0, TEXTURE);
 		poseStack.pushPose();
 		RenderSystem.enableBlend();
-		//GuiUtils.drawTexturedModalRect(poseStack, x, y, u, v, width, height, 0);
 		this.blit(poseStack, x, y, u, v, width, height);
 		RenderSystem.disableBlend();
 		poseStack.popPose();

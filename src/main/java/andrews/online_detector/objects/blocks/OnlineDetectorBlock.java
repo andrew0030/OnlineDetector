@@ -77,10 +77,7 @@ public class OnlineDetectorBlock extends BaseEntityBlock
 	 */
 	private static ToIntFunction<BlockState> getLightValueLit(int lightValue)
 	{
-		return (state) ->
-		{
-			return (state.getValue(IS_ACTIVE) && !state.getValue(IS_INVERTED)) || (!state.getValue(IS_ACTIVE) && state.getValue(IS_INVERTED)) ? lightValue : 0;
-		};
+		return (state) -> (state.getValue(IS_ACTIVE) && !state.getValue(IS_INVERTED)) || (!state.getValue(IS_ACTIVE) && state.getValue(IS_INVERTED)) ? lightValue : 0;
 	}
 
 	@Override

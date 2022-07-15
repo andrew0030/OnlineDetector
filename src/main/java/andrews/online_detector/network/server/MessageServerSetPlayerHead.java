@@ -9,8 +9,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-import java.util.UUID;
-
 public class MessageServerSetPlayerHead
 {
 	public static ResourceLocation PACKET_ID = new ResourceLocation(Reference.MODID, "set_player_head_packet");
@@ -31,7 +29,7 @@ public class MessageServerSetPlayerHead
 				if(level != null)
 				{
 					BlockEntity blockEntity = level.getBlockEntity(pos);
-					// We make sure the TileEntity is a ChessTileEntity
+					// We make sure the TileEntity is an AdvancedOnlineDetectorBlockEntity
 					if(blockEntity instanceof AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorBlockEntity)
 			        {
 						advancedOnlineDetectorBlockEntity.setOwnerHead(stack);
