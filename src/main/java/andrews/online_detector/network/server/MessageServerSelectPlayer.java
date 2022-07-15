@@ -56,7 +56,7 @@ public class MessageServerSelectPlayer
 				if(level != null)
 				{
 					BlockEntity blockEntity = level.getBlockEntity(blockEntityPos);
-					// We make sure the TileEntity is a ChessTileEntity
+					// We make sure the TileEntity is an AdvancedOnlineDetectorBlockEntity
 					if(blockEntity instanceof AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorBlockEntity)
 			        {
 						advancedOnlineDetectorBlockEntity.setOwnerUUID(uuid);

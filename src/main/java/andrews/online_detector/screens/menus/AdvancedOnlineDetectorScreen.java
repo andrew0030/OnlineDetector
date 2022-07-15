@@ -15,7 +15,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class AdvancedOnlineDetectorScreen extends Screen
 {
@@ -50,8 +49,7 @@ public class AdvancedOnlineDetectorScreen extends Screen
 		int x = (this.width - this.xSize) / 2;
 		int y = (this.height - this.ySize) / 2;
 		// The Buttons in the Gui Menu
-		Collection<PlayerInfo> players = Minecraft.getInstance().getConnection().getOnlinePlayers();
-		ArrayList<PlayerInfo> playerList = new ArrayList<PlayerInfo>(players);
+		ArrayList<PlayerInfo> playerList = new ArrayList<PlayerInfo>(Minecraft.getInstance().getConnection().getOnlinePlayers());
 		totalPages = (int) Math.ceil(playerList.size() / 5.0D);
 		int buttonIndex = 0;
 		for(int j = 0; j < playerList.size(); j++)
@@ -61,8 +59,8 @@ public class AdvancedOnlineDetectorScreen extends Screen
 			buttonIndex++;
 		}
 		// Page control Buttons
-		this.addRenderableWidget(new PreviousPageButton(advancedOnlineDetectorBlockEntity, x + 5, y + 113, this));
-		this.addRenderableWidget(new NextPageButton(advancedOnlineDetectorBlockEntity, x + 158, y + 113, this));
+		this.addRenderableWidget(new PreviousPageButton(x + 5, y + 113, this));
+		this.addRenderableWidget(new NextPageButton(x + 158, y + 113, this));
 	}
 
 	@Override
@@ -82,7 +80,7 @@ public class AdvancedOnlineDetectorScreen extends Screen
 			this.font.draw(poseStack, this.advancedOnlineDetectorBlockEntity.getOwnerName(), ((this.width / 2) - (this.font.width(this.advancedOnlineDetectorBlockEntity.getOwnerName()) / 2)), y + 29, 0xffffff);
 
 		this.font.draw(poseStack, this.availableText, x + 5, y + 41, 0x000000);
-		this.font.draw(poseStack, Integer.toString(currentPage) + "/" + Integer.toString(totalPages), ((this.width / 2) - (this.font.width(Integer.toString(currentPage) + "/" + Integer.toString(totalPages)) / 2)), y + 116, 0x000000);
+		this.font.draw(poseStack, currentPage + "/" + totalPages, ((this.width / 2) - (this.font.width(currentPage + "/" + totalPages) / 2)), y + 116, 0x000000);
 		// Renders the Buttons we added in init
 		super.render(poseStack, mouseX, mouseY, partialTick);
 	}

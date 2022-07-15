@@ -1,7 +1,7 @@
 package andrews.online_detector.objects.blocks;
 
-import andrews.online_detector.config.ODConfigs;
 import andrews.online_detector.block_entities.OnlineDetectorBlockEntity;
+import andrews.online_detector.config.ODConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -34,7 +34,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
 import java.util.function.ToIntFunction;
 
 public class OnlineDetectorBlock extends BaseEntityBlock
@@ -78,10 +77,7 @@ public class OnlineDetectorBlock extends BaseEntityBlock
 	 */
 	private static ToIntFunction<BlockState> getLightValueLit(int lightValue)
 	{
-		return (state) ->
-		{
-			return (state.getValue(IS_ACTIVE) && !state.getValue(IS_INVERTED)) || (!state.getValue(IS_ACTIVE) && state.getValue(IS_INVERTED)) ? lightValue : 0;
-		};
+		return (state) -> (state.getValue(IS_ACTIVE) && !state.getValue(IS_INVERTED)) || (!state.getValue(IS_ACTIVE) && state.getValue(IS_INVERTED)) ? lightValue : 0;
 	}
 
 	@Override

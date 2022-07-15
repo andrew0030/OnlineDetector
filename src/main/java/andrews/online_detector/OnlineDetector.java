@@ -1,11 +1,11 @@
 package andrews.online_detector;
 
+import andrews.online_detector.block_entities.model.EyeModel;
 import andrews.online_detector.config.ODConfigs;
 import andrews.online_detector.network.ODNetwork;
+import andrews.online_detector.registry.ODBlockEntities;
 import andrews.online_detector.registry.ODBlocks;
 import andrews.online_detector.registry.ODItems;
-import andrews.online_detector.registry.ODBlockEntities;
-import andrews.online_detector.block_entities.model.EyeModel;
 import andrews.online_detector.util.Reference;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -43,20 +43,13 @@ public class OnlineDetector
 	}
 
 	void setupCommon(final FMLCommonSetupEvent event)
-	{	
-		event.enqueueWork(() -> { });
-		//Thread Safe Stuff Bellow
+	{
 		ODNetwork.setupMessages();
-		
 	}
 
 	void setupClient(final FMLClientSetupEvent event)
 	{
-		event.enqueueWork(() ->
-		{
-			ODBlockEntities.registerBlockEntityRenderers();
-		});
-		// Thread Safe Stuff Bellow
+		event.enqueueWork(ODBlockEntities::registerBlockEntityRenderers);
 	}
 
 	void setupLayers(final EntityRenderersEvent.RegisterLayerDefinitions event)
