@@ -1,15 +1,11 @@
 package andrews.online_detector.screens.menus;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import com.mojang.blaze3d.matrix.MatrixStack;
-
 import andrews.online_detector.screens.buttons.AvailablePlayerButton;
 import andrews.online_detector.screens.buttons.NextPageButton;
 import andrews.online_detector.screens.buttons.PreviousPageButton;
 import andrews.online_detector.tile_entities.AdvancedOnlineDetectorTileEntity;
 import andrews.online_detector.util.Reference;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.play.NetworkPlayerInfo;
@@ -17,6 +13,8 @@ import net.minecraft.client.util.InputMappings;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+
+import java.util.ArrayList;
 
 public class AdvancedOnlineDetectorScreen extends Screen
 {
@@ -51,8 +49,7 @@ public class AdvancedOnlineDetectorScreen extends Screen
 		int x = (this.width - this.xSize) / 2;
 		int y = (this.height - this.ySize) / 2;
 		// The Buttons in the Gui Menu
-		Collection<NetworkPlayerInfo> players = Minecraft.getInstance().getConnection().getPlayerInfoMap();
-		ArrayList<NetworkPlayerInfo> playerList = new ArrayList<NetworkPlayerInfo>(players);
+		ArrayList<NetworkPlayerInfo> playerList = new ArrayList<NetworkPlayerInfo>(Minecraft.getInstance().getConnection().getPlayerInfoMap());
 		totalPages = (int) Math.ceil(playerList.size() / 5.0D);
 		int buttonIndex = 0;
 		for(int j = 0; j < playerList.size(); j++)
@@ -62,8 +59,8 @@ public class AdvancedOnlineDetectorScreen extends Screen
 			buttonIndex++;
 		}
 		// Page control Buttons
-		this.addButton(new PreviousPageButton(advancedOnlineDetectorTileEntity, x + 5, y + 113, this));
-		this.addButton(new NextPageButton(advancedOnlineDetectorTileEntity, x + 158, y + 113, this));
+		this.addButton(new PreviousPageButton(x + 5, y + 113, this));
+		this.addButton(new NextPageButton(x + 158, y + 113, this));
 	}
 	
 	@Override
@@ -83,7 +80,7 @@ public class AdvancedOnlineDetectorScreen extends Screen
 			this.font.drawString(matrixStack, this.advancedOnlineDetectorTileEntity.getOwnerName(), ((this.width / 2) - (this.font.getStringWidth(this.advancedOnlineDetectorTileEntity.getOwnerName()) / 2)), y + 29, 0xffffff);
 		
 		this.font.drawString(matrixStack, this.availableText, x + 5, y + 41, 0x000000);
-		this.font.drawString(matrixStack, Integer.toString(currentPage) + "/" + Integer.toString(totalPages), ((this.width / 2) - (this.font.getStringWidth(Integer.toString(currentPage) + "/" + Integer.toString(totalPages)) / 2)), y + 116, 0x000000);
+		this.font.drawString(matrixStack, currentPage + "/" + totalPages, ((this.width / 2) - (this.font.getStringWidth(currentPage + "/" + totalPages) / 2)), y + 116, 0x000000);
 		// Renders the Buttons we added in init
 		super.render(matrixStack, mouseX, mouseY, partialTicks);
 	}

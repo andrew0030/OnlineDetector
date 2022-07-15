@@ -14,6 +14,6 @@ public class ODBlocks
 {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Reference.MODID);
 	
-	public static final RegistryObject<Block> ONLINE_DETECTOR = RegistryUtils.createBlock("online_detector", () -> new OnlineDetectorBlock(), ItemGroup.REDSTONE);
-	public static final RegistryObject<Block> ADVANCED_ONLINE_DETECTOR = RegistryUtils.createBlock("advanced_online_detector", () -> new AdvancedOnlineDetectorBlock(), ItemGroup.REDSTONE);
+	public static final RegistryObject<Block> ONLINE_DETECTOR = RegistryUtils.createBlock("online_detector", OnlineDetectorBlock::new, ItemGroup.REDSTONE);
+	public static final RegistryObject<Block> ADVANCED_ONLINE_DETECTOR = RegistryUtils.createBlock("advanced_online_detector", AdvancedOnlineDetectorBlock::new, ItemGroup.REDSTONE);
 }

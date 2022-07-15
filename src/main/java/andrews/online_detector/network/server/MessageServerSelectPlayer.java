@@ -56,7 +56,7 @@ public class MessageServerSelectPlayer
 				if(world != null)
 				{
 					TileEntity tileentity = world.getTileEntity(tileEntityPos);
-					// We make sure the TileEntity is a ChessTileEntity
+					// We make sure the TileEntity is an AdvancedOnlineDetectorTileEntity
 					if(tileentity instanceof AdvancedOnlineDetectorTileEntity)
 			        {
 						AdvancedOnlineDetectorTileEntity advancedOnlineDetectorTileEntity = (AdvancedOnlineDetectorTileEntity)tileentity;

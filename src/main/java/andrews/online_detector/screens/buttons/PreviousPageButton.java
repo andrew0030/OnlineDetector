@@ -1,11 +1,9 @@
 package andrews.online_detector.screens.buttons;
 
+import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
+import andrews.online_detector.util.Reference;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-
-import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
-import andrews.online_detector.tile_entities.AdvancedOnlineDetectorTileEntity;
-import andrews.online_detector.util.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.ResourceLocation;
@@ -21,7 +19,7 @@ public class PreviousPageButton extends Button
 	private int v = 155;
 	private static AdvancedOnlineDetectorScreen screen;
 	
-	public PreviousPageButton(AdvancedOnlineDetectorTileEntity advancedOnlineDetectorTileEntity1, int xPos, int yPos, AdvancedOnlineDetectorScreen onlineDetectorScreen) 
+	public PreviousPageButton(int xPos, int yPos, AdvancedOnlineDetectorScreen onlineDetectorScreen)
 	{
 		super(xPos, yPos, buttonWidth, buttonHeight, new StringTextComponent(""), (button) -> { handleButtonPress(); });
 		screen = onlineDetectorScreen;

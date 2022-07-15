@@ -1,8 +1,5 @@
 package andrews.online_detector.objects.blocks;
 
-import java.util.Random;
-import java.util.function.ToIntFunction;
-
 import andrews.online_detector.config.ODConfigs;
 import andrews.online_detector.tile_entities.OnlineDetectorTileEntity;
 import net.minecraft.block.Block;
@@ -30,6 +27,9 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+
+import java.util.Random;
+import java.util.function.ToIntFunction;
 
 public class OnlineDetectorBlock extends Block
 {
@@ -66,10 +66,7 @@ public class OnlineDetectorBlock extends Block
 	 */
 	private static ToIntFunction<BlockState> getLightValueLit(int lightValue)
 	{
-		return (state) ->
-		{
-			return (state.get(IS_ACTIVE) && !state.get(IS_INVERTED)) || (!state.get(IS_ACTIVE) && state.get(IS_INVERTED)) ? lightValue : 0;
-		};
+		return (state) -> (state.get(IS_ACTIVE) && !state.get(IS_INVERTED)) || (!state.get(IS_ACTIVE) && state.get(IS_INVERTED)) ? lightValue : 0;
 	}
 	
 	@Override

@@ -1,14 +1,11 @@
 package andrews.online_detector.screens.buttons;
 
-import java.util.UUID;
-
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
-
 import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
 import andrews.online_detector.tile_entities.AdvancedOnlineDetectorTileEntity;
 import andrews.online_detector.util.NetworkUtil;
 import andrews.online_detector.util.Reference;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
@@ -19,6 +16,8 @@ import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.fml.client.gui.GuiUtils;
+
+import java.util.UUID;
 
 public class AvailablePlayerButton extends Button
 {
@@ -46,10 +45,10 @@ public class AvailablePlayerButton extends Button
 	@Override
 	public void onPress()
 	{
-		if(Minecraft.getInstance().world.getPlayerByUuid(playerInfo.getGameProfile().getId()) != null)
+		if(playerInfo.getGameProfile().getId() != null)
 		{
 			UUID uuid = playerInfo.getGameProfile().getId();
-			String name = Minecraft.getInstance().world.getPlayerByUuid(playerInfo.getGameProfile().getId()).getName().getString();
+			String name = playerInfo.getGameProfile().getName();
 			NetworkUtil.newSelectPlayerMessage(advancedOnlineDetectorTileEntity.getPos(), uuid, name);
 			NetworkUtil.setPlayerHeadMessage(advancedOnlineDetectorTileEntity.getPos(), new ItemStack(Items.AIR));
 		}
@@ -83,7 +82,7 @@ public class AvailablePlayerButton extends Button
 		matrixStack.pop();
 		if(!(buttonIndex < (screen.getCurrentPage() * 5) - 5 || buttonIndex >= screen.getCurrentPage() * 5))
 		{
-			this.fontRenderer.drawString(matrixStack, Minecraft.getInstance().world.getPlayerByUuid(playerInfo.getGameProfile().getId()).getName().getString(), x + 12, y + 2, 0x000000);
+			this.fontRenderer.drawString(matrixStack, playerInfo.getGameProfile().getName(), x + 12, y + 2, 0x000000);
 			matrixStack.push();
 			matrixStack.translate(x + 1, y + 1, 0);
 			matrixStack.scale(1.25F, 1.25F, 1.0F);

@@ -1,9 +1,5 @@
 package andrews.online_detector.tile_entities;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 import andrews.online_detector.config.ODConfigs;
 import andrews.online_detector.objects.blocks.OnlineDetectorBlock;
 import andrews.online_detector.registry.ODTileEntities;
@@ -18,6 +14,10 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.util.Constants.NBT;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class OnlineDetectorTileEntity extends TileEntity implements ITickableTileEntity
 {

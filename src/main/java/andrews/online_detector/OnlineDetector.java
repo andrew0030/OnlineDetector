@@ -19,12 +19,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(value = Reference.MODID)
 public class OnlineDetector
 {
-	public static OnlineDetector instance;
-
 	@SuppressWarnings("deprecation")
 	public OnlineDetector()
 	{
-		instance = this;
 		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		
 		ODItems.ITEMS.register(modEventBus);
@@ -41,24 +38,13 @@ public class OnlineDetector
 	}
 	
 	void setupCommon(final FMLCommonSetupEvent event)
-	{	
-		event.enqueueWork(() -> 
-		{
-			
-		});
-		//Thread Safe Stuff
+	{
 		ODNetwork.setupMessages();
-		
 	}
 	
 	@OnlyIn(Dist.CLIENT)
 	void setupClient(final FMLClientSetupEvent event)
 	{
-		event.enqueueWork(() -> 
-		{
-			ODTileEntities.registerTileRenders();
-		});
-		//Thread Safe Stuff
-		
+		event.enqueueWork(ODTileEntities::registerTileRenders);
 	}
 }

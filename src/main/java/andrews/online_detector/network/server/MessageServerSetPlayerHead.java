@@ -1,7 +1,5 @@
 package andrews.online_detector.network.server;
 
-import java.util.function.Supplier;
-
 import andrews.online_detector.tile_entities.AdvancedOnlineDetectorTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -11,6 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.network.NetworkEvent;
+
+import java.util.function.Supplier;
 
 public class MessageServerSetPlayerHead
 {
@@ -51,7 +51,7 @@ public class MessageServerSetPlayerHead
 				if(world != null)
 				{
 					TileEntity tileentity = world.getTileEntity(tileEntityPos);
-					// We make sure the TileEntity is a ChessTileEntity
+					// We make sure the TileEntity is an AdvancedOnlineDetectorTileEntity
 					if(tileentity instanceof AdvancedOnlineDetectorTileEntity)
 			        {
 						AdvancedOnlineDetectorTileEntity advancedOnlineDetectorTileEntity = (AdvancedOnlineDetectorTileEntity)tileentity;
