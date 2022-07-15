@@ -17,7 +17,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
-version = '1.18.2-2.0.0'
+version = '1.18.2-2.1.0'
 group = 'com.andrews.online_detector'
 archivesBaseName = 'online_detector'
 
@@ -98,7 +98,7 @@ minecraft {
 repositories {}
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.0.19'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.60'
 }
 
 jar {

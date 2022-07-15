@@ -1,7 +1,7 @@
 package andrews.online_detector.screens.buttons;
 
-import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
 import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
+import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
 import andrews.online_detector.util.NetworkUtil;
 import andrews.online_detector.util.Reference;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -81,7 +81,7 @@ public class AvailablePlayerButton extends Button
 		poseStack.popPose();
 		if(!(buttonIndex < (screen.getCurrentPage() * 5) - 5 || buttonIndex >= screen.getCurrentPage() * 5))
 		{
-			this.fontRenderer.draw(poseStack, Minecraft.getInstance().level.getPlayerByUUID(playerInfo.getProfile().getId()).getName().getString(), x + 12, y + 2, 0x000000);
+			this.fontRenderer.draw(poseStack, playerInfo.getProfile().getName(), x + 12, y + 2, 0x000000);
 			poseStack.pushPose();
 			poseStack.translate(x + 1, y + 1, 0);
 			poseStack.scale(1.25F, 1.25F, 1.0F);
