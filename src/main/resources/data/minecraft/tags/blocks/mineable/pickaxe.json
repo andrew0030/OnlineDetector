@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "online_detector:online_detector",
+    "online_detector:advanced_online_detector"
+  ]
+}

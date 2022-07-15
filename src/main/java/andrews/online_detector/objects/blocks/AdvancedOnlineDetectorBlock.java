@@ -29,7 +29,7 @@ public class AdvancedOnlineDetectorBlock extends OnlineDetectorBlock
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType)
 	{
-		return (level1, pos, state1, blockEntity) -> AdvancedOnlineDetectorBlockEntity.tick(level1, pos, state1, (OnlineDetectorBlockEntity) blockEntity);
+		return (level1, pos, state1, blockEntity) -> AdvancedOnlineDetectorBlockEntity.tick(level1, pos, state1, (AdvancedOnlineDetectorBlockEntity) blockEntity);
 	}
 
 	// We Overide this here to avoid setting the block placer as the tracking target, for the advanced online detector.

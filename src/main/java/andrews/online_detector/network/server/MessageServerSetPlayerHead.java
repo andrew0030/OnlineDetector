@@ -31,7 +31,7 @@ public class MessageServerSetPlayerHead
 				if(level != null)
 				{
 					BlockEntity blockEntity = level.getBlockEntity(pos);
-					// We make sure the TileEntity is a ChessTileEntity
+					// We make sure the TileEntity is an AdvancedOnlineDetectorBlockEntity
 					if(blockEntity instanceof AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorBlockEntity)
 			        {
 						advancedOnlineDetectorBlockEntity.setOwnerHead(stack);

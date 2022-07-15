@@ -1,7 +1,7 @@
 package andrews.online_detector.screens.buttons;
 
-import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
 import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
+import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
 import andrews.online_detector.util.NetworkUtil;
 import andrews.online_detector.util.Reference;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -44,10 +44,10 @@ public class AvailablePlayerButton extends Button
 	@Override
 	public void onPress()
 	{
-		if(Minecraft.getInstance().level.getPlayerByUUID(playerInfo.getProfile().getId()) != null)
+		if(playerInfo.getProfile().getId() != null)
 		{
 			UUID uuid = playerInfo.getProfile().getId();
-			String name = Minecraft.getInstance().level.getPlayerByUUID(playerInfo.getProfile().getId()).getName().getString();
+			String name = playerInfo.getProfile().getName();
 			NetworkUtil.newSelectPlayerMessage(advancedOnlineDetectorBlockEntity.getBlockPos(), uuid, name);
 			NetworkUtil.setPlayerHeadMessage(advancedOnlineDetectorBlockEntity.getBlockPos(), new ItemStack(Items.AIR));
 		}
@@ -75,13 +75,12 @@ public class AvailablePlayerButton extends Button
 		RenderSystem.setShaderTexture(0, TEXTURE);
 		poseStack.pushPose();
 		RenderSystem.enableBlend();
-		//GuiUtils.drawTexturedModalRect(poseStack, x, y, u, v, width, height, 0);
 		this.blit(poseStack, x, y, u, v, width, height);
 		RenderSystem.disableBlend();
 		poseStack.popPose();
 		if(!(buttonIndex < (screen.getCurrentPage() * 5) - 5 || buttonIndex >= screen.getCurrentPage() * 5))
 		{
-			this.fontRenderer.draw(poseStack, Minecraft.getInstance().level.getPlayerByUUID(playerInfo.getProfile().getId()).getName().getString(), x + 12, y + 2, 0x000000);
+			this.fontRenderer.draw(poseStack, playerInfo.getProfile().getName(), x + 12, y + 2, 0x000000);
 			poseStack.pushPose();
 			poseStack.translate(x + 1, y + 1, 0);
 			poseStack.scale(1.25F, 1.25F, 1.0F);

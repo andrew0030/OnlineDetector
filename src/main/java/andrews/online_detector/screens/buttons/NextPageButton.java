@@ -1,7 +1,6 @@
 package andrews.online_detector.screens.buttons;
 
 import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
-import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
 import andrews.online_detector.util.Reference;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -19,7 +18,7 @@ public class NextPageButton extends Button
 	private int v = 169;
 	private static AdvancedOnlineDetectorScreen screen;
 	
-	public NextPageButton(AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorTileEntity1, int xPos, int yPos, AdvancedOnlineDetectorScreen onlineDetectorScreen)
+	public NextPageButton(int xPos, int yPos, AdvancedOnlineDetectorScreen onlineDetectorScreen)
 	{
 		super(xPos, yPos, buttonWidth, buttonHeight, new TextComponent(""), (button) -> { handleButtonPress(); });
 		screen = onlineDetectorScreen;
