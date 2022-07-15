@@ -1,9 +1,5 @@
 package andrews.online_detector.block_entities;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 import andrews.online_detector.config.ODConfigs;
 import andrews.online_detector.objects.blocks.OnlineDetectorBlock;
 import andrews.online_detector.registry.ODBlockEntities;
@@ -22,6 +18,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class OnlineDetectorBlockEntity extends BlockEntity
 {

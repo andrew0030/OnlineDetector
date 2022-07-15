@@ -17,7 +17,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
-version = '1.18.2-2.1.0'
+version = '1.18.2-2.1.1'
 group = 'com.andrews.online_detector'
 archivesBaseName = 'online_detector'
 

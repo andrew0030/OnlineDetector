@@ -1,9 +1,5 @@
 package andrews.online_detector.registry.util;
 
-import java.util.function.Supplier;
-
-import javax.annotation.Nullable;
-
 import andrews.online_detector.registry.ODBlocks;
 import andrews.online_detector.registry.ODItems;
 import net.minecraft.world.item.BlockItem;
@@ -11,6 +7,9 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
+
+import javax.annotation.Nullable;
+import java.util.function.Supplier;
 
 public class RegistryUtils
 {

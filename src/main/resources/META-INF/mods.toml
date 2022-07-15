@@ -6,7 +6,7 @@ license="GNU Lesser General Public License v3.0"
 
 [[mods]]
     modId="online_detector"
-    version="1.18.2-2.1.0"
+    version="1.18.2-2.1.1"
     displayName="Online Detector"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/online-detector"
     credits=""
