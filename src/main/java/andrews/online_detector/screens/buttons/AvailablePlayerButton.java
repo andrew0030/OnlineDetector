@@ -33,7 +33,7 @@ public class AvailablePlayerButton extends Button
 	
 	public AvailablePlayerButton(AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorBlockEntity, PlayerInfo playerInfo, int xPos, int yPos, AdvancedOnlineDetectorScreen screen, int buttonIndex)
 	{
-		super(xPos, yPos, buttonWidth, buttonHeight, Component.literal(""), null);
+		super(xPos, yPos, buttonWidth, buttonHeight, Component.literal(""), (button) -> {}, DEFAULT_NARRATION);
 		this.fontRenderer = Minecraft.getInstance().font;
 		this.advancedOnlineDetectorBlockEntity = advancedOnlineDetectorBlockEntity;
 		this.playerInfo = playerInfo;
