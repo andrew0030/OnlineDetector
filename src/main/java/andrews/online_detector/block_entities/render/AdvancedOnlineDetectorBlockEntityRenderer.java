@@ -1,13 +1,13 @@
 package andrews.online_detector.block_entities.render;
 
-import andrews.online_detector.objects.blocks.AdvancedOnlineDetectorBlock;
 import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
 import andrews.online_detector.block_entities.model.EyeModel;
+import andrews.online_detector.objects.blocks.AdvancedOnlineDetectorBlock;
 import andrews.online_detector.util.NetworkUtil;
 import andrews.online_detector.util.Reference;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -52,15 +52,15 @@ public class AdvancedOnlineDetectorBlockEntityRenderer implements BlockEntityRen
 		{
 			default:
 			case NORTH:
-				poseStack.mulPose(Vector3f.YN.rotationDegrees(90.0F));
+				poseStack.mulPose(Axis.YN.rotationDegrees(90.0F));
 				break;
 			case SOUTH:
-				poseStack.mulPose(Vector3f.YN.rotationDegrees(270.0F));
+				poseStack.mulPose(Axis.YN.rotationDegrees(270.0F));
 				break;
 			case WEST:
 				break;
 			case EAST:
-				poseStack.mulPose(Vector3f.YN.rotationDegrees(180.0F));
+				poseStack.mulPose(Axis.YN.rotationDegrees(180.0F));
 		}
 
 		if(blockEntity.hasLevel())
@@ -92,8 +92,8 @@ public class AdvancedOnlineDetectorBlockEntityRenderer implements BlockEntityRen
 		
 		if(state.getValue(AdvancedOnlineDetectorBlock.IS_ACTIVE))
 		{
-			poseStack.mulPose(Vector3f.XP.rotationDegrees((float) Math.cos((Minecraft.getInstance().player.tickCount + partialTick) / 4) * 2));
-			poseStack.mulPose(Vector3f.ZP.rotationDegrees((float) Math.sin((Minecraft.getInstance().player.tickCount + partialTick) / 4) * 2));
+			poseStack.mulPose(Axis.XP.rotationDegrees((float) Math.cos((Minecraft.getInstance().player.tickCount + partialTick) / 4) * 2));
+			poseStack.mulPose(Axis.ZP.rotationDegrees((float) Math.sin((Minecraft.getInstance().player.tickCount + partialTick) / 4) * 2));
 		}
 		
 		poseStack.translate(0.0D, -1.0D, 0.0D);

@@ -19,7 +19,7 @@ public class PreviousPageButton extends Button
 	
 	public PreviousPageButton(int xPos, int yPos, AdvancedOnlineDetectorScreen onlineDetectorScreen)
 	{
-		super(xPos, yPos, buttonWidth, buttonHeight, Component.literal(""), (button) -> { handleButtonPress(); });
+		super(xPos, yPos, buttonWidth, buttonHeight, Component.literal(""), (button) -> { handleButtonPress(); }, DEFAULT_NARRATION);
 		screen = onlineDetectorScreen;
 	}
 

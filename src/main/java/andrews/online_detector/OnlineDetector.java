@@ -1,12 +1,16 @@
 package andrews.online_detector;
 
 import andrews.online_detector.config.ODConfig;
+import andrews.online_detector.events.CreativeTabEvents;
 import andrews.online_detector.network.ODNetwork;
 import andrews.online_detector.registry.ODBlockEntities;
 import andrews.online_detector.registry.ODBlocks;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.mixin.itemgroup.ItemGroupsAccessor;
+import net.minecraft.world.item.CreativeModeTabs;
 
 public class OnlineDetector implements ModInitializer
 {
@@ -20,6 +24,8 @@ public class OnlineDetector implements ModInitializer
 
 		ODBlocks.init();
 		ODBlockEntities.init();
+
+		CreativeTabEvents.init();
 
 		ODNetwork.registerNetworkMessages();
 	}
