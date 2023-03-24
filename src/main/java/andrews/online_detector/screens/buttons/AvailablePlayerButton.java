@@ -55,7 +55,7 @@ public class AvailablePlayerButton extends Button
 	}
 
 	@Override
-	public void renderButton(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
+	public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
 	{
 		this.isHovered = mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height || this.isFocused();
 

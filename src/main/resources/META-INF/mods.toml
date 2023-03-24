@@ -1,12 +1,12 @@
 modLoader="javafml"
-loaderVersion="[44,)"
+loaderVersion="[45,)"
 issueTrackerURL="https://github.com/andrew0030/OnlineDetector/issues"
 logoFile="logo.png"
 license="GNU Lesser General Public License v3.0"
 
 [[mods]]
     modId="online_detector"
-    version="1.19.3-4.0.0"
+    version="1.19.4-5.0.0"
     displayName="Online Detector"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/online-detector"
     credits=""
@@ -16,13 +16,13 @@ license="GNU Lesser General Public License v3.0"
 [[dependencies.online_detector]]
     modId="forge"
     mandatory=true
-    versionRange="[44.0.18,)"
+    versionRange="[45.0.0,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.online_detector]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.3,1.20)"
+    versionRange="[1.19.4,1.20)"
     ordering="NONE"
     side="BOTH"
