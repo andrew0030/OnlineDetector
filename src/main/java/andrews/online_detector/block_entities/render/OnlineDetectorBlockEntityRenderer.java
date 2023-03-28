@@ -10,12 +10,12 @@ import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -132,7 +132,7 @@ public class OnlineDetectorBlockEntityRenderer implements BlockEntityRenderer<On
 		int i = (int)blockEntity.getBlockPos().asLong();
 		// We make sure the stack has been initialized before attempting to render it
 		if(blockEntity.getOwnerHead().getItem() != Items.AIR)
-			Minecraft.getInstance().getItemRenderer().renderStatic(blockEntity.getOwnerHead(), ItemTransforms.TransformType.FIXED, packedLight, packedOverlay, poseStack, bufferSource, i);
+			Minecraft.getInstance().getItemRenderer().renderStatic(blockEntity.getOwnerHead(), ItemDisplayContext.FIXED, packedLight, packedOverlay, poseStack, bufferSource, blockEntity.getLevel(), i);
 	}
 	
 	private static ItemStack getCustomHead(String playerName)

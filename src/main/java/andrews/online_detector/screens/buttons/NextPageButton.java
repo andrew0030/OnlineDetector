@@ -25,7 +25,7 @@ public class NextPageButton extends Button
 	}
 
 	@Override
-	public void renderButton(PoseStack poseStack, int mouseX, int mouseY, float pPartialTick)
+	public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float pPartialTick)
 	{
 		this.isHovered = mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height || this.isFocused();
 
