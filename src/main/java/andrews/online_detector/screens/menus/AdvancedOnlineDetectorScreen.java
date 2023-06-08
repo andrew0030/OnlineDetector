@@ -6,9 +6,8 @@ import andrews.online_detector.screens.buttons.NextPageButton;
 import andrews.online_detector.screens.buttons.PreviousPageButton;
 import andrews.online_detector.util.Reference;
 import com.mojang.blaze3d.platform.InputConstants;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.network.chat.Component;
@@ -64,25 +63,24 @@ public class AdvancedOnlineDetectorScreen extends Screen
 	}
 
 	@Override
-	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
+	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
 		int x = (this.width - this.xSize) / 2;
 		int y = (this.height - this.ySize) / 2;
 
-		RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
-		RenderSystem.setShaderTexture(0, MENU_TEXTURE);
-		this.blit(poseStack, x, y, 0, 0, this.xSize, this.ySize);
+		graphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
+		graphics.blit(MENU_TEXTURE, x, y, 0, 0, this.xSize, this.ySize);
 
-		this.font.draw(poseStack, this.advancedOnlineDetectorText, ((this.width / 2) - (this.font.width(this.advancedOnlineDetectorText) / 2)), y + 6, 4210752);
-		this.font.draw(poseStack, this.trackingText, x + 5, y + 18, 0x000000);
+		graphics.drawString(this.font, this.advancedOnlineDetectorText, ((this.width / 2) - (this.font.width(this.advancedOnlineDetectorText) / 2)), y + 6, 4210752, false);
+		graphics.drawString(this.font, this.trackingText, x + 5, y + 18, 0x000000, false);
 		// The name of the Player that is being tracked
 		if(this.advancedOnlineDetectorBlockEntity.getOwnerName() != null)
-			this.font.draw(poseStack, this.advancedOnlineDetectorBlockEntity.getOwnerName(), ((this.width / 2) - (this.font.width(this.advancedOnlineDetectorBlockEntity.getOwnerName()) / 2)), y + 29, 0xffffff);
+			graphics.drawString(this.font, this.advancedOnlineDetectorBlockEntity.getOwnerName(), ((this.width / 2) - (this.font.width(this.advancedOnlineDetectorBlockEntity.getOwnerName()) / 2)), y + 29, 0xffffff, false);
 
-		this.font.draw(poseStack, this.availableText, x + 5, y + 41, 0x000000);
-		this.font.draw(poseStack, currentPage + "/" + totalPages, ((this.width / 2) - (this.font.width(currentPage + "/" + totalPages) / 2)), y + 116, 0x000000);
+		graphics.drawString(this.font, this.availableText, x + 5, y + 41, 0x000000, false);
+		graphics.drawString(this.font, currentPage + "/" + totalPages, ((this.width / 2) - (this.font.width(currentPage + "/" + totalPages) / 2)), y + 116, 0x000000, false);
 		// Renders the Buttons we added in init
-		super.render(poseStack, mouseX, mouseY, partialTick);
+		super.render(graphics, mouseX, mouseY, partialTick);
 	}
 
 	@Override

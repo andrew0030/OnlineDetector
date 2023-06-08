@@ -32,8 +32,7 @@ public class OnlineDetector
 		ODBlocks.BLOCKS.register(modEventBus);
 		ODBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
 		
-		DistExecutor.runWhenOn(Dist.CLIENT, () -> () ->
-		{
+		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 			modEventBus.addListener(EventPriority.LOWEST, this::setupClient);
 			modEventBus.addListener(this::setupLayers);
 		});

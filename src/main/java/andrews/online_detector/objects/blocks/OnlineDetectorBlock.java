@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -57,7 +57,8 @@ public class OnlineDetectorBlock extends BaseEntityBlock
 	 */
 	private static Properties getProperties()
 	{
-		Properties properties = Block.Properties.of(Material.STONE);
+		Properties properties = Block.Properties.of();
+		properties.mapColor(MapColor.STONE);
 		properties.strength(1.5F, 6.0F);
 		properties.requiresCorrectToolForDrops();
 		properties.lightLevel(getLightValueLit(7));

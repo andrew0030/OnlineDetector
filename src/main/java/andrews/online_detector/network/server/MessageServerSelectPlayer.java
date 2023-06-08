@@ -1,8 +1,5 @@
 package andrews.online_detector.network.server;
 
-import java.util.UUID;
-import java.util.function.Supplier;
-
 import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -11,6 +8,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.network.NetworkEvent;
+
+import java.util.UUID;
+import java.util.function.Supplier;
 
 public class MessageServerSelectPlayer
 {
@@ -44,7 +44,6 @@ public class MessageServerSelectPlayer
 	{
 		NetworkEvent.Context context = ctx.get();
 		Player player = context.getSender();
-		Level level = player.getLevel();
 		BlockPos blockEntityPos = message.pos;
 		UUID uuid = message.uuid;
 		String name = message.name;
@@ -53,8 +52,9 @@ public class MessageServerSelectPlayer
 		{
 			context.enqueueWork(() ->
 			{
-				if(level != null)
+				if(player != null)
 				{
+					Level level = player.level();
 					BlockEntity blockEntity = level.getBlockEntity(blockEntityPos);
 					// We make sure the TileEntity is an AdvancedOnlineDetectorBlockEntity
 					if(blockEntity instanceof AdvancedOnlineDetectorBlockEntity advancedOnlineDetectorBlockEntity)

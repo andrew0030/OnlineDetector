@@ -29,13 +29,13 @@ public static final String NETWORK_PROTOCOL = "1";
 		CHANNEL.messageBuilder(MessageServerSelectPlayer.class, id++)
 		.encoder(MessageServerSelectPlayer::serialize)
 		.decoder(MessageServerSelectPlayer::deserialize)
-		.consumer(MessageServerSelectPlayer::handle)
+		.consumerMainThread(MessageServerSelectPlayer::handle)
 		.add();
 		
 		CHANNEL.messageBuilder(MessageServerSetPlayerHead.class, id++)
 		.encoder(MessageServerSetPlayerHead::serialize)
 		.decoder(MessageServerSetPlayerHead::deserialize)
-		.consumer(MessageServerSetPlayerHead::handle)
+		.consumerMainThread(MessageServerSetPlayerHead::handle)
 		.add();
 	}
 }

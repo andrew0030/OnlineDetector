@@ -2,8 +2,7 @@ package andrews.online_detector.screens.buttons;
 
 import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
 import andrews.online_detector.util.Reference;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +23,7 @@ public class PreviousPageButton extends Button
 	}
 
 	@Override
-	public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
+	public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
 		this.isHovered = mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height || this.isFocused();
 
@@ -40,13 +39,7 @@ public class PreviousPageButton extends Button
 		}
 
 		//Renders the Button
-		RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
-		RenderSystem.setShaderTexture(0, TEXTURE);
-		poseStack.pushPose();
-		RenderSystem.enableBlend();
-		this.blit(poseStack, x, y, u, v, width, height);
-		RenderSystem.disableBlend();
-		poseStack.popPose();
+		graphics.blit(TEXTURE, x, y, u, v, width, height);
 	}
 
 	/**

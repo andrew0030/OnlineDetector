@@ -4,11 +4,9 @@ import andrews.online_detector.block_entities.AdvancedOnlineDetectorBlockEntity;
 import andrews.online_detector.screens.menus.AdvancedOnlineDetectorScreen;
 import andrews.online_detector.util.NetworkUtil;
 import andrews.online_detector.util.Reference;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.network.chat.Component;
@@ -55,7 +53,7 @@ public class AvailablePlayerButton extends Button
 	}
 
 	@Override
-	public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
+	public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
 		this.isHovered = mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height || this.isFocused();
 
@@ -70,24 +68,17 @@ public class AvailablePlayerButton extends Button
 			this.v = 244;
 		}
 
-		//Renders the Button
-		RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
-		RenderSystem.setShaderTexture(0, TEXTURE);
-		poseStack.pushPose();
-		RenderSystem.enableBlend();
-		this.blit(poseStack, x, y, u, v, width, height);
-		RenderSystem.disableBlend();
-		poseStack.popPose();
+		graphics.setColor(1F, 1F, 1F, 1F);
+		graphics.blit(TEXTURE, x, y, u, v, width, height);
 		if(!(buttonIndex < (screen.getCurrentPage() * 5) - 5 || buttonIndex >= screen.getCurrentPage() * 5))
 		{
-			this.fontRenderer.draw(poseStack, playerInfo.getProfile().getName(), x + 12, y + 2, 0x000000);
-			poseStack.pushPose();
-			poseStack.translate(x + 1, y + 1, 0);
-			poseStack.scale(1.25F, 1.25F, 1.0F);
-			RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
-			RenderSystem.setShaderTexture(0, playerInfo.getSkinLocation());
-			GuiComponent.blit(poseStack, 0, 0, 8, 8, 8.0F, 8, 8, 8, 64, 64);
-			poseStack.popPose();
+			graphics.drawString(this.fontRenderer, playerInfo.getProfile().getName(), x + 12, y + 2, 0x000000, false);
+			graphics.pose().pushPose();
+			graphics.pose().translate(x + 1, y + 1, 0);
+			graphics.pose().scale(1.25F, 1.25F, 1.0F);
+			graphics.setColor(1F, 1F, 1F, 1F);
+			graphics.blit(playerInfo.getSkinLocation(), 0, 0, 8, 8, 8.0F, 8, 8, 8, 64, 64);
+			graphics.pose().popPose();
 		}
 	}
 }
