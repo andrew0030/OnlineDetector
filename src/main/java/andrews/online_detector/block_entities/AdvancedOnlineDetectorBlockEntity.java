@@ -1,15 +1,15 @@
 package andrews.online_detector.block_entities;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 import andrews.online_detector.objects.blocks.AdvancedOnlineDetectorBlock;
 import andrews.online_detector.registry.ODBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class AdvancedOnlineDetectorBlockEntity extends OnlineDetectorBlockEntity
 {

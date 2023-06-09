@@ -8,9 +8,6 @@ import andrews.online_detector.registry.ODBlocks;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.fabricmc.fabric.mixin.itemgroup.ItemGroupsAccessor;
-import net.minecraft.world.item.CreativeModeTabs;
 
 public class OnlineDetector implements ModInitializer
 {

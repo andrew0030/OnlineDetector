@@ -5,8 +5,8 @@ import andrews.online_detector.block_entities.OnlineDetectorBlockEntity;
 import andrews.online_detector.block_entities.render.AdvancedOnlineDetectorBlockEntityRenderer;
 import andrews.online_detector.block_entities.render.OnlineDetectorBlockEntityRenderer;
 import andrews.online_detector.util.Reference;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +21,7 @@ public class ODBlockEntities
 
 	public static void registerBlockEntityRenderers()
     {
-		BlockEntityRendererRegistry.register(ONLINE_DETECTOR, OnlineDetectorBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(ADVANCED_ONLINE_DETECTOR, AdvancedOnlineDetectorBlockEntityRenderer::new);
+		BlockEntityRenderers.register(ONLINE_DETECTOR, OnlineDetectorBlockEntityRenderer::new);
+		BlockEntityRenderers.register(ADVANCED_ONLINE_DETECTOR, AdvancedOnlineDetectorBlockEntityRenderer::new);
     }
 }
